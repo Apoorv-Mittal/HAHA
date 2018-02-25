@@ -1,6 +1,6 @@
 # HAHA
 
-Team Member
+Team Members
 
 Jeremy Bell - jmbell
 
