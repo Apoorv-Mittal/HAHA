@@ -2,28 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4f87456d-4726-4de8-aab8-94b52d6db4c1" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/css/sign_up.css" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/phaha@002edb/categories.frm" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/phaha@002edb/categories.ibd" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/phaha@002edb/db.opt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/phaha@002edb/event_date.frm" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/phaha@002edb/event_date.ibd" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/phaha@002edb/events.frm" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/phaha@002edb/events.ibd" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/phaha@002edb/friends.frm" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/phaha@002edb/friends.ibd" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/phaha@002edb/intertests.frm" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/phaha@002edb/intertests.ibd" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/phaha@002edb/participants.frm" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/phaha@002edb/participants.ibd" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/phaha@002edb/tags.frm" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/phaha@002edb/tags.ibd" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/phaha@002edb/user.frm" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/phaha@002edb/user.ibd" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sign_up.php" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/index.php" afterPath="$PROJECT_DIR$/index.php" />
-      <change beforePath="$PROJECT_DIR$/sign-up.php" afterPath="" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -37,24 +17,12 @@
       <file leaf-file-name="index.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="731">
-              <caret line="34" column="18" lean-forward="true" selection-start-line="34" selection-start-column="18" selection-end-line="34" selection-end-column="18" />
+            <state relative-caret-position="488">
+              <caret line="41" column="78" lean-forward="false" selection-start-line="41" selection-start-column="78" selection-end-line="41" selection-end-column="78" />
               <folding>
-                <marker date="1522600276000" expanded="true" signature="316:363" ph="select * fro... applicants" />
-                <marker date="1522600276000" expanded="true" signature="888:1343" ph="..." />
-                <marker date="1522600276000" expanded="true" signature="939:1341" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="db.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/db.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="143">
-              <caret line="7" column="23" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="23" />
-              <folding>
-                <marker date="1522599843000" expanded="true" signature="349:370" ph="/* Executing... " />
+                <marker date="1522600623000" expanded="true" signature="316:363" ph="select * fro... applicants" />
+                <marker date="1522600623000" expanded="true" signature="888:1343" ph="..." />
+                <marker date="1522600623000" expanded="true" signature="939:1341" ph="..." />
               </folding>
             </state>
           </provider>
@@ -248,12 +216,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1522597366454</updated>
-      <workItem from="1522597371955" duration="3089000" />
+      <workItem from="1522597371955" duration="3212000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3089000" />
+    <option name="totallyTimeSpent" value="3212000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="47" y="22" width="1393" height="878" extended-state="0" />
@@ -329,33 +297,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/new_event.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/new_private_event.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="0">
-            <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-            <folding />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/interests.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -416,14 +357,51 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/sign_up.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="16" column="33" lean-forward="true" selection-start-line="16" selection-start-column="33" selection-end-line="16" selection-end-column="33" />
+          <folding>
+            <marker date="1522600359000" expanded="true" signature="970:1345" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/new_private_event.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/new_event.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="0">
+            <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="731">
-          <caret line="34" column="18" lean-forward="true" selection-start-line="34" selection-start-column="18" selection-end-line="34" selection-end-column="18" />
+        <state relative-caret-position="488">
+          <caret line="41" column="78" lean-forward="false" selection-start-line="41" selection-start-column="78" selection-end-line="41" selection-end-column="78" />
           <folding>
-            <marker date="1522600276000" expanded="true" signature="316:363" ph="select * fro... applicants" />
-            <marker date="1522600276000" expanded="true" signature="888:1343" ph="..." />
-            <marker date="1522600276000" expanded="true" signature="939:1341" ph="..." />
+            <marker date="1522600623000" expanded="true" signature="316:363" ph="select * fro... applicants" />
+            <marker date="1522600623000" expanded="true" signature="888:1343" ph="..." />
+            <marker date="1522600623000" expanded="true" signature="939:1341" ph="..." />
           </folding>
         </state>
       </provider>

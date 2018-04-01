@@ -39,7 +39,7 @@ if( isset($_POST['Login'])){
                 <strong>Password: </strong> <input type="text" name="Pass">
                 <input type="submit" class="btn btn-primary" name="Login" value="Log In">
                 <br>
-                <input type="submit" class="btn btn-primary" formaction="sign-up.php" formmethod="post" value="Sign Up">
+                <input type="submit" class="btn btn-primary" formaction="sign_up.php" formmethod="post" value="Sign Up">
             </form>
 END;
 
