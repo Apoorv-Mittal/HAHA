@@ -21,7 +21,7 @@ if( isset($_POST['Login'])){
     } else {
         $_SESSION['email']= $email;
         $row = $result->fetch_array(MYSQLI_ASSOC);
-        if (password_verify($password, $row['password'])){
+        if (password_verify($password, $row['hash'])){
             header('Location:user.php');
             exit();
         }
