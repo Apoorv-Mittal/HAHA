@@ -39,13 +39,13 @@
       <file leaf-file-name="support.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/support.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="11" column="29" lean-forward="false" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
+            <state relative-caret-position="552">
+              <caret line="24" column="1" lean-forward="false" selection-start-line="24" selection-start-column="1" selection-end-line="24" selection-end-column="1" />
               <folding>
-                <marker date="1522599393000" expanded="true" signature="115:513" ph="..." />
-                <marker date="1522599393000" expanded="true" signature="126:398" ph="..." />
-                <marker date="1522599393000" expanded="true" signature="422:505" ph="..." />
-                <marker date="1522599393000" expanded="true" signature="460:493" ph="..." />
+                <marker date="1522599466000" expanded="true" signature="115:513" ph="..." />
+                <marker date="1522599466000" expanded="true" signature="126:398" ph="..." />
+                <marker date="1522599466000" expanded="true" signature="422:505" ph="..." />
+                <marker date="1522599466000" expanded="true" signature="460:493" ph="..." />
               </folding>
             </state>
           </provider>
@@ -238,12 +238,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1522597366454</updated>
-      <workItem from="1522597371955" duration="1994000" />
+      <workItem from="1522597371955" duration="2069000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1994000" />
+    <option name="totallyTimeSpent" value="2069000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="47" y="22" width="1393" height="878" extended-state="0" />
@@ -406,13 +406,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/support.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="11" column="29" lean-forward="false" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
+        <state relative-caret-position="552">
+          <caret line="24" column="1" lean-forward="false" selection-start-line="24" selection-start-column="1" selection-end-line="24" selection-end-column="1" />
           <folding>
-            <marker date="1522599393000" expanded="true" signature="115:513" ph="..." />
-            <marker date="1522599393000" expanded="true" signature="126:398" ph="..." />
-            <marker date="1522599393000" expanded="true" signature="422:505" ph="..." />
-            <marker date="1522599393000" expanded="true" signature="460:493" ph="..." />
+            <marker date="1522599466000" expanded="true" signature="115:513" ph="..." />
+            <marker date="1522599466000" expanded="true" signature="126:398" ph="..." />
+            <marker date="1522599466000" expanded="true" signature="422:505" ph="..." />
+            <marker date="1522599466000" expanded="true" signature="460:493" ph="..." />
           </folding>
         </state>
       </provider>
