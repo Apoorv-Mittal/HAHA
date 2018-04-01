@@ -22,4 +22,3 @@ EOPAGE;
     echo $page;
 }
 
-?>
