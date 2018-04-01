@@ -1,9 +1,9 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.7.7
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Apr 01, 2018 at 07:24 PM
+-- Host: localhost
+-- Generation Time: Apr 01, 2018 at 09:10 PM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.1
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `phaha.db`
+-- Database: `phaha`
 --
 
 -- --------------------------------------------------------
@@ -58,7 +58,8 @@ CREATE TABLE `event_date` (
   `start_time` time NOT NULL,
   `end_time` time NOT NULL,
   `type` enum('WEEKLY','ONE_DAY') NOT NULL,
-  `date` date NOT NULL
+  `date` date NOT NULL,
+  `weekDay` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -75,10 +76,10 @@ CREATE TABLE `friends` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `intertests`
+-- Table structure for table `interests`
 --
 
-CREATE TABLE `intertests` (
+CREATE TABLE `interests` (
   `email` varchar(60) NOT NULL,
   `category` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -118,6 +119,13 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`email`, `hash`) VALUES
+('asas@asas', '$2y$10$HR3DH4YZngVr5yyjM8FmAuWDIfnF/lPNih8b2UGQS3Aht8prh.Gwa');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -146,9 +154,9 @@ ALTER TABLE `friends`
   ADD PRIMARY KEY (`email1`,`email2`);
 
 --
--- Indexes for table `intertests`
+-- Indexes for table `interests`
 --
-ALTER TABLE `intertests`
+ALTER TABLE `interests`
   ADD PRIMARY KEY (`email`);
 
 --
