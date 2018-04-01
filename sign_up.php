@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>$title</title>
+        <title>Sign Up</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link rel="stylesheet" href="./css/sign_up.css" />
     </head>
@@ -36,7 +36,9 @@
 END;
 			if (isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["confirmPassword"])) {
 				if ($_POST["password"] == $_POST["confirmPassword"]) {
-
+					$sql = "insert into user (email, hash) values ('".$_POST["email"]."', '".$_POST["password"]."')";
+					include "./db.php";
+					queryForDB($sql);
 				} else {
 					$errors[] = "<h2>Your password confirmation failed.</h2>";
 				}
