@@ -1,6 +1,6 @@
 <?php
 
-function generatePage($body, $title="Example") {
+function generatePage($body, $title="Events") {
     $page = <<<EOPAGE
 <!doctype html>
 <html>
@@ -19,7 +19,7 @@ function generatePage($body, $title="Example") {
 </html>
 EOPAGE;
 
-    return $page;
+    echo $page;
 }
 
 ?>
