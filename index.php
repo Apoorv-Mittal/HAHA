@@ -14,26 +14,28 @@ if( isset($_POST['Login'])){
 
     $password= trim($_POST['Pass']);
     $result = queryForDB("select * from user where email = \"".$email."\"");
+    if($result == null )
+        $body .= "<h1>No entry exists in database for the specified email and password</h1>";
+    else {
+        /* Number of rows found */
+        $num_rows = $result->num_rows;
+        if ($num_rows === 0) {
+            echo "Empty Table<br>";
+        } else {
+            $_SESSION['email'] = $email;
+            $row = $result->fetch_array(MYSQLI_ASSOC);
+            if (password_verify($password, $row['hash'])) {
+                header('Location:user.php');
+                exit();
+            } else
+                $body .= "<h1>No entry exists in database for the specified email and password</h1>";
 
-    /* Number of rows found */
-    $num_rows = $result->num_rows;
-    if ($num_rows === 0) {
-        echo "Empty Table<br>";
-    } else {
-        $_SESSION['email']= $email;
-        $row = $result->fetch_array(MYSQLI_ASSOC);
-        if (password_verify($password, $row['hash'])){
-            header('Location:user.php');
-            exit();
         }
-        else
-            $body .= "<h1>No entry exists in database for the specified email and password</h1>";
-
     }
 }
 
 
-    $body = <<<END
+    $body .= <<<END
     <h1>HAHA EVENTS</h1>
             <form action="index.php" method="post">
                 <strong>Email: </strong> <input type="text" name="Email">
