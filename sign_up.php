@@ -15,6 +15,7 @@
 		-pass
 		-confirm pass
 		-after send to user.php*/
+			session_start();
 			$fileName = basename(__FILE__);
 			$emailValue = "";
 			$body = "";
@@ -37,6 +38,8 @@ END;
 					$result = queryForDB($sql);
 					if (is_string($result)) {
 						$errors[] = "<h2>That email is already in use</h2>";
+					} else {
+						$_SESSION["email"] = $_POST["email"];
 					}
 				} else {
 					$errors[] = "<h2>Your password confirmation failed.</h2>";
@@ -44,6 +47,10 @@ END;
 			}
 			if (count($errors) > 0) {
 				echo "<div class='errors'>".implode("", $errors)."</div>";
+			}
+
+			if (isset($_SESSION["email"])) {
+				header("Location: ./user.php");
 			}
 			echo $body;
 ?>
