@@ -20,6 +20,7 @@ $database = "phaha";
         }
         /* Closing connection */
         $db_connection->close();
+        return $result;
     }
 
 
