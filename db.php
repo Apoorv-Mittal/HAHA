@@ -1,6 +1,8 @@
 <?php
+    $errors = array();
 	function queryForDB($query)
     {
+        global $errors;
         $host = "localhost";
         $user = "admin";
         $password = "terps";
@@ -14,12 +16,17 @@
         /* Executing query */
         $result = $db_connection->query($query);
         if (!$result) {
-            echo '<script>console.log($db_connection->error)</script>';
+            $errors[] = $db_connection->error;
             $result = null;
         }
         /* Closing connection */
         $db_connection->close();
         return $result;
+    }
+
+    function getErrors() {
+        global $errors;
+        return $errors;
     }
 
 

@@ -1,6 +1,12 @@
 <?php
-
 function generatePage($body, $title="Events") {
+    $errorLogs = "";
+    if (function_exists("getErrors")) {
+        $errors = getErrors();
+        if (count($errors) > 0) {
+            $errorLogs = "<script>console.log(\"".implode(", '\\n',", $errors)."\")</script>";
+        }
+    }
     $page = <<<EOPAGE
 <!doctype html>
 <html>
@@ -15,6 +21,7 @@ function generatePage($body, $title="Events") {
         <div class="container-fluid">
             $body
         </div>
+        $errorLogs
     </body>
 </html>
 EOPAGE;
