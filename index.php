@@ -7,19 +7,19 @@
 require_once 'support.php';
 
 if( isset($_POST['Login'])){
-
-
     header('Location:user.php');
+    exit();
 }
 
 
 $body=<<<END
+    <h1>HAHA EVENTS</h1>
             <form action="index.php" method="post">
                 <strong>Email: </strong> <input type="text" name="Email">
                 <strong>Password: </strong> <input type="text" name="Pass">
-                <input type="submit" name="Login" value="Log In">
+                <input type="submit" class="btn btn-primary" name="Login" value="Log In">
                 <br>
-                <input type="submit" formaction="sign-up.php" formmethod="post" value="Sign Up">
+                <input type="submit" class="btn btn-primary" formaction="sign-up.php" formmethod="post" value="Sign Up">
             </form>
 END;
 
