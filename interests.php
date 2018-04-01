@@ -1,0 +1,4 @@
+-First display the ones you've checked (header text: Yours)
+- then display the ones you haven't checked
+- create new category
+- return to user.php

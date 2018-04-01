@@ -1,0 +1,2 @@
+- use jQuery calendar to just display stuff
+- add private events -> new_private_event.php

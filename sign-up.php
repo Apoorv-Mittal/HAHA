@@ -1,0 +1,4 @@
+-email
+-pass
+-confirm pass
+-after send to user.php
