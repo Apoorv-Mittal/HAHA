@@ -14,7 +14,8 @@
         /* Executing query */
         $result = $db_connection->query($query);
         if (!$result) {
-            $result = "MYSQL ERROR: ".$db_connection->error;
+            echo '<script>console.log($db_connection->error)</script>';
+            $result = null;
         }
         /* Closing connection */
         $db_connection->close();
