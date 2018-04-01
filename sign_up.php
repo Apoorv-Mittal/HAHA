@@ -36,7 +36,7 @@ END;
 					$sql = "insert into user (email, hash) values ('".$_POST["email"]."', '".password_hash($_POST["password"], PASSWORD_BCRYPT)."')";
 					include "./db.php";
 					$result = queryForDB($sql);
-					if (is_string($result)) {
+					if ($result == null ) {
 						$errors[] = "<h2>That email is already in use</h2>";
 					} else {
 						$_SESSION["email"] = $_POST["email"];
