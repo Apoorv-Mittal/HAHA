@@ -15,7 +15,7 @@ if (isset($_POST["submitNewEvent"])) {
 #) VALUES ( '{$_POST['type']}', '{$_SESSION['email']}'
 #    '" . mysqli_real_escape_string (file_get_contents ({$_POST['image']}), $db) . "'
 #);");
-	queryForDb("INSERT INTO events VALUES ('{$_POST['type']}', {$_SESSION['email']}, {$_POST['title']}, {$_POST['description']})");
+	$result = queryForDb("INSERT INTO events VALUES ('{$_POST['type']}', {$_SESSION['email']}, {$_POST['title']}, {$_POST['description']})");
 	$response .= <<<EOBODY
 		<h1>Event has been added</h1><form action="{$_SERVER["PHP_SELF"]}" method="post" class="form-horizontal">
 
