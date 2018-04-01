@@ -7,6 +7,7 @@
 require_once 'support.php';
 require_once 'db.php';
 session_start();
+$body="";
 
 if( isset($_POST['Login'])){
     $email= trim($_POST['Email']);
