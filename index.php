@@ -12,7 +12,7 @@ if( isset($_POST['Login'])){
     $email= trim($_POST['Email']);
 
     $password= trim($_POST['Pass']);
-    $result = queryForDB("select * from User where email = \"".$email."\"");
+    $result = queryForDB("select * from user where email = \"".$email."\"");
 
     /* Number of rows found */
     $num_rows = $result->num_rows;
