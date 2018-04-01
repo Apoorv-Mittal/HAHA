@@ -12,12 +12,12 @@ if (isset($_POST["addFriend"])) {
 	$result = queryForDb("SELECT * FROM user WHERE email=\"{$_POST['addEmail']}\"");
 	if (!$result) {
 		$response .= <<<EOBODY
-		<h1>Add friend</h1><strong>The given user does not exist</strong><form action="{$_SERVER["PHP_SELF"]}" method="post" class="form-horizontal">
+		<h1 >Add friend</h1><strong>The given user does not exist</strong><form action="{$_SERVER["PHP_SELF"]}" method="post" class="form-horizontal">
 
         <div class="form-group">                   
             <label for="addEmail" class="control-label col-sm-3">Friend's email</label>
             <div class="col-sm-9">
-                <input type="text" id="addEmail" name="addEmail" class="form-control"></input>
+                <input type="text" id="addEmail" name="addEmail" class="form-control">
   	        </div>
         </div>
         <div class="form-group">
@@ -35,7 +35,7 @@ EOBODY;
         <div class="form-group">             
             <label for="addEmail" class="control-label col-sm-3">Friend's email</label>
             <div class="col-sm-9">
-                <input type="text" id="addEmail" name="addEmail" class="form-control"></input>
+                <input type="text" id="addEmail" name="addEmail" class="form-control">
   	        </div>
         </div>
         <div class="form-group">
@@ -53,7 +53,7 @@ EOBODY;
         <div class="form-group">                   
             <label for="addEmail" class="control-label col-sm-3">Friend's email</label>
             <div class="col-sm-9">
-                <input type="text" id="addEmail" name="addEmail" class="form-control"></input>
+                <input type="text" id="addEmail" name="addEmail" class="form-control">
   	        </div>
         </div>
         <div class="form-group">
@@ -65,4 +65,3 @@ EOBODY;
 }
 
 generatePage($response);
-?>
