@@ -20,11 +20,7 @@
 			$body = "";
 			$errors = [];
 			if (isset($_POST["email"])) {
-				if (false) {// email exists in database
-					$errors[] = "<h2>That email is already in use</h2>";
-				} else {
-					$emailValue = $_POST["email"];
-				}
+				$emailValue = $_POST["email"];
 			}
 			$body .= <<<END
 			    <form method="post" action="$fileName" class="container-fluid col-lg-4 col-md-6 col-sm-12">
@@ -36,9 +32,12 @@
 END;
 			if (isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["confirmPassword"])) {
 				if ($_POST["password"] == $_POST["confirmPassword"]) {
-					$sql = "insert into user (email, hash) values ('".$_POST["email"]."', '".$_POST["password"]."')";
+					$sql = "insert into user (email, hash) values ('".$_POST["email"]."', '".password_hash($_POST["password"], PASSWORD_BCRYPT)."')";
 					include "./db.php";
-					queryForDB($sql);
+					$result = queryForDB($sql);
+					if (is_string($result)) {
+						$errors[] = "<h2>That email is already in use</h2>";
+					}
 				} else {
 					$errors[] = "<h2>Your password confirmation failed.</h2>";
 				}

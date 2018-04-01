@@ -14,7 +14,7 @@
         /* Executing query */
         $result = $db_connection->query($query);
         if (!$result) {
-            die("Insertion failed: " . $db_connection->error);
+            $result = "MYSQL ERROR: ".$db_connection->error;
         }
         /* Closing connection */
         $db_connection->close();
