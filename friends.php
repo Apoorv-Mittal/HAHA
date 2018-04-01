@@ -9,7 +9,7 @@ include("db.php");
 $response = "";
 
 if (isset($_POST["addFriend"])) {
-	$result = queryForDb("SELECT * FROM USER WHERE email='{$_POST['addEmail']}'");
+	$result = queryForDb("SELECT * FROM user WHERE email='{$_POST['addEmail']}'");
 	if (!$result) {
 		$response .= <<<EOBODY
 		<h1>Add friend</h1><strong>The given user does not exist</strong><form action="{$_SERVER["PHP_SELF"]}" method="post" class="form-horizontal">
@@ -28,7 +28,7 @@ if (isset($_POST["addFriend"])) {
 
 EOBODY;
 	} else {
-		$result = queryForDb("INSERT INTO Friends values('{$_SESSION['email']}', '{$_POST['addEmail']}')");
+		$result = queryForDb("INSERT INTO friends values('{$_SESSION['email']}', '{$_POST['addEmail']}')");
 		$response .= <<<EOBODY
 		<h1>Add friend</h1><strong>The given user does not exist</strong><form action="{$_SERVER["PHP_SELF"]}" method="post" class="form-horizontal">
 
