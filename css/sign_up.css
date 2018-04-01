@@ -1,0 +1,19 @@
+form label {
+	display: block;
+}
+form label span:after {
+	content: ":";
+}
+form label span, form label input {
+	display: inline-block;
+	width: 50%;
+}
+form input[type=submit] {
+	width: 100%;
+}
+.errors {
+	color: red;
+}
+.errors h2 {
+	font-size: 1.2em;
+}
