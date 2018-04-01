@@ -1,12 +1,10 @@
 <?php
-$host = "localhost";
-$user = "admin";
-$password = "terps";
-$database = "phaha";
-
-
 	function queryForDB($query)
     {
+        $host = "localhost";
+        $user = "admin";
+        $password = "terps";
+        $database = "phaha";
         /* Connecting to the database */
         $db_connection = new mysqli($host, $user, $password, $database);
         if ($db_connection->connect_error) {
