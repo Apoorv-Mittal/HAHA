@@ -45,6 +45,8 @@
 		}
 
 		asort($tally);
+		$tally = array_map("weightalgo", array_keys($tally), array_values($tally));
+
 		return array_slice(array_keys($tally), 0, 2);
     }
 
