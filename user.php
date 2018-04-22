@@ -6,10 +6,13 @@ $body="";
 $frnds="<div class=\"form-group col\">";
 
 
-$result = queryForDB("SELECT TOP 5 email2 FROM Friends WHERE email1 = \" ".$_SESSION['email']." \"");
-if($result == null )
-    $frnds .= "<h1>You have no Friends</h1><input type=\"submit\" class=\"form-control btn btn-info\" value=\"Add Friends\" name=\"friends\">
+$result = queryForDB("SELECT * FROM friends WHERE email1 = \" ".$_SESSION['email']." \" or email2 = \"".$_SESSION['email']."\" LIMIT 5;");
+if($result == null ) {
+    $frnds .= "<h1>You have no Friends</h1>
+        <input type=\"submit\" class=\"form-control btn btn-info\" value=\"Add Friends\" name=\"friends\">
                 </div>";
+
+}
 else {
     /* Number of rows found */
     $num_rows = $result->num_rows;
@@ -18,12 +21,16 @@ else {
         <input type=\"submit\" class=\"form-control btn btn-info\" value=\"Add Friends\" name=\"friends\">
                 </div>";
     } else {
-        $frnds.= "<table class=\"table\">";
+        $frnds.= "<table class=\"table\"><thead><tr><th scope=\"col\">Your Friends</th></tr></thead><tbody>";
         while ($recordArray = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-            $frnds .="<tr><td>".$recordArray['email2']."</td></tr>";
+            if ($_SESSION['email'] == $recordArray['email1'] )
+                $frnds .="<tr><td>".$recordArray['email2']."</td></tr>";
+            else
+                $frnds .="<tr><td>".$recordArray['email1']."</td></tr>";
         }
-        $frnds.= "</table>
-                <input type=\"submit\" class=\"form - control btn btn - info\" value=\"Add more friends\" name=\"friends\">
+        $frnds.= "</tbody>
+                </table>
+                <input type=\"submit\" class=\"form-control btn btn-info\" value=\"Add more friends\" name=\"friends\">
                 </div>";
     }
 }
