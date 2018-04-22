@@ -4,12 +4,14 @@ require_once ("support.php");
     <h1 class="text-center"><strong>User Page</strong></h1><br>
         
         <form action="friends.php" method="post">
-        <div class="text-center form-group"><input type="submit" class="form-control" value="Friends" name="friends"></div>
         <div class="text-center form-group">
-        <input type="submit" class="form-control" value="Edit Interests" name="interests" formaction="interests.php" formmethod="post">
+            <input type="submit" class="form-control btn btn-info" value="Friends" name="friends">
         </div>
         <div class="text-center form-group">
-        <input type="submit" class="form-control" value="Create Event" name="event" formaction="new_event.php" formmethod="post">
+        <input type="submit" class="form-control btn btn-info" value="Edit Interests" name="interests" formaction="interests.php" formmethod="post">
+        </div>
+        <div class="text-center form-group">
+        <input type="submit" class="form-control btn btn-info" value="Create Event" name="event" formaction="new_event.php" formmethod="post">
         </div>
         </form>    
         
