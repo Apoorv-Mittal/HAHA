@@ -133,3 +133,8 @@
     	}
     	return $XArray;
     }
+
+    function algoForC($name, $category) {
+        $query ="select * from interests where categry=$category and email=$name";
+        return queryForDB($query)->num_rows;
+    }
