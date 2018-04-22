@@ -26,7 +26,6 @@ END;
 			if (isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["confirmPassword"])) {
 				if ($_POST["password"] == $_POST["confirmPassword"]) {
 					$sql = "insert into user (email, hash) values ('".$_POST["email"]."', '".password_hash($_POST["password"], PASSWORD_BCRYPT)."')";
-					include "./db.php";
 					$result = queryForDB($sql);
 					if ($result == null ) {
 						$errors[] = "<h2>That email is already in use</h2>";

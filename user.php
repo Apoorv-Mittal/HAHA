@@ -1,13 +1,15 @@
 <?php
 require_once ("support.php");
+require_once ("db.php");
 session_start();
 $body="";
 $frnds="<div class=\"form-group col\">";
 
 
-$result = queryForDB("SELECT TOP 5 email2 FROM Friends WHERE email1 == \" ".$_SESSION['email']." \"");
+$result = queryForDB("SELECT TOP 5 email2 FROM Friends WHERE email1 = \" ".$_SESSION['email']." \"");
 if($result == null )
-    $body .= "<h1>You have no Friends</h1>";
+    $frnds .= "<h1>You have no Friends</h1><input type=\"submit\" class=\"form-control btn btn-info\" value=\"Add Friends\" name=\"friends\">
+                </div>";
 else {
     /* Number of rows found */
     $num_rows = $result->num_rows;
