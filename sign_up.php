@@ -1,24 +1,16 @@
-<!doctype html>
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Sign Up</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <link rel="stylesheet" href="./css/sign_up.css" />
-    </head>
-    <body>
-    	<h1>Sign Up</h1>
 <?php
 		/*
 		-email
 		-pass
 		-confirm pass
 		-after send to user.php*/
+    require_once 'support.php';
+    require_once 'db.php';
+
 			session_start();
 			$fileName = basename(__FILE__);
 			$emailValue = "";
-			$body = "";
+			$body = "<h1 class='text-center'>Sign Up</h1>";
 			$errors = [];
 			if (isset($_POST["email"])) {
 				$emailValue = $_POST["email"];
@@ -28,7 +20,7 @@
 			    	<label><span>Email</span><input type="email" name="email" required value="$emailValue" /></label>
 			    	<label><span>Password</span><input type="password" name="password" required /></label>
 			    	<label><span>Confirm Password</span><input type="password" name="confirmPassword" required /></label>
-			    	<input type="submit" value="Register" />
+			    	<input type="submit" class="btn btn-primary" value="Register" />
 			    </form>
 END;
 			if (isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["confirmPassword"])) {
@@ -52,7 +44,4 @@ END;
 			if (isset($_SESSION["email"])) {
 				header("Location: ./user.php");
 			}
-			echo $body;
-?>
-	</body>
-</html>
+generatePage($body,"Sign Up", "<link rel=\"stylesheet\" href=\"./css/sign_up.css\" />");
