@@ -2,6 +2,18 @@
 include("support.php");
 include("db.php");
 $response = "";
+/*
+
+TIME FORMAT:
+HH:MM
+24-hour time
+0-padded
+
+DATE FORMAT:
+YYYY-MM-DD
+0-padded
+
+*/
 
 if (isset($_POST["return"])) {	
 	header("Location: user.php");
