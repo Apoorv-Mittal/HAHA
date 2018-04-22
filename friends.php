@@ -7,61 +7,47 @@ include("support.php");
 include("db.php");
 
 $response = "";
+$additional="";
 session_start();
+
 if (isset($_POST["addFriend"])) {
-	$result = queryForDb("SELECT * FROM user WHERE email=\"{$_POST['addEmail']}\"");
+    $fr = trim($_POST["addEmail"]);
+	$result = queryForDb("SELECT * FROM user WHERE email=\"".$fr."\";");
 	if (!$result) {
-		$response .= <<<EOBODY
-		<h1 >Add friend</h1><strong>The given user does not exist</strong><form action="{$_SERVER["PHP_SELF"]}" method="post" class="form-horizontal">
-
-        <div class="form-group">                   
-            <label for="addEmail" class="control-label col-sm-3">Friend's email</label>
-            <div class="col-sm-9">
-                <input type="text" id="addEmail" name="addEmail" class="form-control">
-  	        </div>
-        </div>
-        <div class="form-group">
-            <div class="col-sm-3 col-sm-push-3">
-                <input type="submit" name="addFriend" value="Add" class="form-control">
-            </div>
-        </div>
-
-EOBODY;
-	} else {
-		$result = queryForDb("INSERT INTO friends values (\"{$_SESSION['email']}\", \"{$_POST['addEmail']}\")");
-		$response .= <<<EOBODY
-		<h1>Add friend</h1><strong>The given user does not exist</strong><form action="{$_SERVER["PHP_SELF"]}" method="post" class="form-horizontal">
-
-        <div class="form-group">             
-            <label for="addEmail" class="control-label col-sm-3">Friend's email</label>
-            <div class="col-sm-9">
-                <input type="text" id="addEmail" name="addEmail" class="form-control">
-  	        </div>
-        </div>
-        <div class="form-group">
-            <div class="col-sm-3 col-sm-push-3">
-                <input type="submit" name="addFriend" value="Add" class="form-control">
-            </div>
-        </div>
-
-EOBODY;
+		$additional .= "<h3>The given user does not exist</h3>";
 	}
-} else {
-	$response .= <<<EOBODY
-		<h1>Add friend</h1><form action="{$_SERVER["PHP_SELF"]}" method="post" class="form-horizontal">
+	else {
+	    $exists = queryForDb("SELECT * FROM friends WHERE (email1=\"".$fr."\" AND email2=\"{$_SESSION['email']}\") OR 
+	    (email2=\"".$fr."\" AND email1=\"{$_SESSION['email']}\");");
 
-        <div class="form-group">                   
-            <label for="addEmail" class="control-label col-sm-3">Friend's email</label>
-            <div class="col-sm-9">
-                <input type="text" id="addEmail" name="addEmail" class="form-control">
-  	        </div>
-        </div>
-        <div class="form-group">
-            <div class="col-sm-3 col-sm-push-3">
-                <input type="submit" name="addFriend" value="Add" class="form-control">
-            </div>
-        </div>
-EOBODY;
+
+	    if ($exists->num_rows != 0){
+            $additional = "<h3>You are already friends with {$fr}.</h3>";
+        }
+        else if ($fr == $_SESSION['email']){
+            $additional = "<h3>You are already friends with yourself.</h3>";
+        }
+        else {
+            $result = queryForDb("INSERT INTO friends values (\"{$_SESSION['email']}\", \"{$fr}\");");
+            $additional = "<strong>You added {$fr}.</strong>";
+        }
+	}
 }
+	$response .= <<<EOBODY
+		<h1>Add friend</h1>
+		
+		$additional
+		
+		<form action="{$_SERVER["PHP_SELF"]}" method="post" class="form-horizontal">
+            <div class="form-group">                   
+                <label for="addEmail" class="control-label col-sm-3 col-sm-9">Friend's email</label>
+                    <input type="email" id="addEmail" name="addEmail" class="form-control">
+            </div>
+            <div class="form-group col-sm-3 col-sm-push-3">
+                <input type="submit" name="addFriend" value="Add" class="form-control  btn btn-primary">
+            </div>
+        </form>
+EOBODY;
+
 
 generatePage($response);
