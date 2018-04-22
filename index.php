@@ -36,14 +36,17 @@ if( isset($_POST['Login'])){
 
 
     $body .= <<<END
+    <div class="text-center">
     <h1>HAHA EVENTS</h1>
-            <form action="index.php" method="post">
-                <strong>Email: </strong> <input type="text" name="Email">
-                <strong>Password: </strong> <input type="password" name="Pass">
+            <form action="index.php"  method="post">
+                <strong>Email: </strong><input type="text" name="Email">
+                
+                <strong>Password: </strong><input type="password" name="Pass">
                 <input type="submit" class="btn btn-primary" name="Login" value="Log In">
                 <br>
                 <input type="submit" class="btn btn-primary" formaction="sign_up.php" formmethod="post" value="Sign Up">
             </form>
+    </div>
 END;
 
 
