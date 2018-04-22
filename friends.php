@@ -13,7 +13,7 @@ session_start();
 if (isset($_POST["addFriend"])) {
     $fr = trim($_POST["addEmail"]);
 	$result = queryForDb("SELECT * FROM user WHERE email=\"".$fr."\";");
-	if (!$result) {
+	if ($result->num_rows == 0) {
 		$additional .= "<h3>The given user does not exist</h3>";
 	}
 	else {
