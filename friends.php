@@ -46,6 +46,9 @@ if (isset($_POST["addFriend"])) {
             <div class="form-group col-sm-3 col-sm-push-3">
                 <input type="submit" name="addFriend" value="Add" class="form-control  btn btn-primary">
             </div>
+            <div class="form-group col-sm-3 col-sm-push-3">
+                <input type="submit" name="back" value="Go Back To User Page" class="form-control  btn btn-primary" formaction="user.php" formmethod="post">
+            </div>
         </form>
 EOBODY;
 
