@@ -1,5 +1,14 @@
 <?php
-
+	/*
+	The formula:
+		Calculates the potential interest in the event.
+		Parameters:
+			F -> the number of friends attending an event
+			C -> 1 if the category is of interest of the current user.
+			T -> true if the user can attend the event due to time constraints
+		Returns:
+			if T then 0.75*F + 2*C else 0
+	*/
     include("support.php");
     include("db.php");
     session_start();
@@ -55,80 +64,71 @@
 
     }
 
-    function algoForX() {// X is every event
-    	return queryForDB("select start_time, end_time, date, type, event_id from event_date");
+    function algoForX() {// X is every public event
+    	return queryForDB("select start_time, end_time, date, event_id from events where type = 'PUBLIC'");
     }
 
     function algoForY() {// Y is events the user is participating in
-    	return queryForDB("select p.event_id, ed.start_time, ed.end_time, ed.date, ed.type from participants p left join event_date e on p.event_id = e.event_id where p.email = '".$_SESSION["email"]."'");
+    	return queryForDB("select p.event_id, ed.start_time, ed.end_time, ed.date, ed.type from participants p left join events e on p.event_id = e.event_id where p.email = '".$_SESSION["email"]."'");
     }
 
     function eventsOverlap($e1, $e2) {
-    	// Part 1: do the dates overlap?
-    	// if they're the same day of year, then the date will overlap.
-    	$sameDay = $e1["date"]["tm_yday"] === $e2["date"]["tm_yday"];
-
-    	// if one of the events recurs and they fall on the same weekday, the date will overlap.
-    	if (!$sameDay && ($e1["recurring"] || $e2["recurring"])) {
-    		$sameDay = $e1["date"]["tm_wday"] === $e2["date"]["tm_wday"];
-    	}
-
-    	if (!$sameDay) {
-    		return false;
-    	}
-
-    	// Part 2: do the times overlap?
-    	$e1Times = array($e1["start_time"]["tm_min"] + $e1["start_time"]["tm_hour"]*60, $e1["end_time"]["tm_min"] + $e1["end_time"]["tm_hour"]*60);
-    	$e2Times = array($e2["start_time"]["tm_min"] + $e2["start_time"]["tm_hour"]*60, $e2["end_time"]["tm_min"] + $e2["end_time"]["tm_hour"]*60);
-    	// 0 => start time, 1 => end time
-    	return ($e1Times[0] >= $e2Times[0] && $e1Times[0] <= $e2Times[1]) ||
-    		   ($e1Times[1] >= $e2Times[0] && $e1Times[1] <= $e2Times[1]);
+    	// true if the $e1 and $e2 conflict based on time
+    	$COMPARE_FORMAT = "%Y%m%d%H%M%S";
+    	$startDate =$e1["start_date"];
+    	$endDate =$e1["end_date"];
+    	// converts the date to a comparable format in integers
+    	// reads from largest to smallest, 0-padded (Year, Month, Day, Hour, Minute, Second)
+    	$e1Dates = array(
+    		(int) strftime($start_date, $COMPARE_FORMAT),
+    		(int) strftime($end_date, $COMPARE_FORMAT)
+    	);
+    	$startDate =$e2["start_date"];
+    	$endDate =$e2["end_date"];
+    	$e2Dates = array(
+    		(int) strftime($start_date, $COMPARE_FORMAT),
+    		(int) strftime($end_date, $COMPARE_FORMAT)
+    	);
+    	// return true if the start date of e1 falls between e2's start and end dates,
+    	// or if the end date of e1 falls between e2's start and end dates
+    	return ($e1Dates[0] >= $e2Dates[0] && $e1Dates[0] <= $e2Dates[1]) ||
+    		   ($e1Dates[1] >= $e2Dates[0] && $e1Dates[1] <= $e2Dates[1]);
     }
 
-    function weighInterest() {
-    	// Returns events we should weigh interest in. Exclude events where the time overlaps or that the user is already participating.
-    	$TIME_FORMAT = "%H:%M:%S";
-    	$DATE_FORMAT = "%Y:%m:%d";
-		/*
+    function algForT() {// T is true when an event is something the user can attend.
+    	// However, it is hard to compute T for one event, so this function returns
+    	// all events for when T is true.
 
-		TIME FORMAT:
-		HH:MM:SS
-		24-hour time
-		0-padded
-
-		DATE FORMAT:
-		YYYY-MM-DD
-		0-padded
-
-		*/
+    	$DATETIME_FORMAT = "%Y-%m-%d %H:%M:%S";
     	$X = algoForX();
     	$XArray = array();
+    	// since our alg is O(n^2), we make this efficient by making an array of x pre-parsed.
     	while ($x = $X->fetch_assoc()) {
     		$parsedX = array(
     			"event_id" => $x["event_id"],
-	    		"start_time" => strptime($x["start_time"], $TIME_FORMAT),
-	    		"end_time" => strptime($x["end_time"], $TIME_FORMAT),
-	    		"date" => strptime($x["date"], $DATE_FORMAT),
-	    		"recurring" => $x["type"] === "WEEKLY"
+	    		"start_date" => strptime($x["start_date"], $DATETIME_FORMAT),
+	    		"end_date" => strptime($x["end_date"], $DATETIME_FORMAT)
 	    	);
     		$XArray[] = $parsedX;
     	}
     	$Y = algoForY();
+    	// loop through all events user is participating in
     	while($y = $Y->fetch_assoc()) {
     		$parsedY = array(
     			"event_id" => $y["event_id"],
-	    		"start_time" => strptime($y["start_time"], $TIME_FORMAT),
-	    		"end_time" => strptime($y["end_time"], $TIME_FORMAT),
-	    		"date" => strptime($y["date"], $DATE_FORMAT),
-	    		"recurring" => $y["type"] === "WEEKLY"
+	    		"start_date" => strptime($y["start_date"], $DATETIME_FORMAT),
+	    		"end_date" => strptime($y["end_date"], $DATETIME_FORMAT)
     		);
     		$overlapped = false;
     		$tempX = array();
-    		foreach ($XArray as $x) {
+    		foreach ($XArray as $x) {// loop through all remaining events
+    			// if the event doesn't overlap, it's something the user could attend
+    			// it will then be assigned a visibility score based on potential interest.
     			if (!eventsOverlap($x, $parsedY)) {
     				$tempX[] = $x;
     			}
     		}
+    		// replace all public events with all public events that are open for user.
     		$XArray = $tempX;
     	}
     	return $XArray;
