@@ -154,12 +154,6 @@ ALTER TABLE `friends`
   ADD PRIMARY KEY (`email1`,`email2`);
 
 --
--- Indexes for table `interests`
---
-ALTER TABLE `interests`
-  ADD PRIMARY KEY (`email`);
-
---
 -- Indexes for table `participants`
 --
 ALTER TABLE `participants`
