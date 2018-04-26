@@ -40,6 +40,10 @@ CREATE TABLE `categories` (
 
 CREATE TABLE `events` (
   `event_id` varchar(60) NOT NULL,
+  `date` date NOT NULL,
+  `start_time` time NOT NULL,
+  `end_time` time NOT NULL,
+  `weekDay` varchar(20) NOT NULL,
   `type` enum('PUBLIC','PRIVATE') NOT NULL,
   `owner_email` varchar(60) NOT NULL,
   `title` varchar(40) NOT NULL,
@@ -47,20 +51,6 @@ CREATE TABLE `events` (
   `image` longblob NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `event_date`
---
-
-CREATE TABLE `event_date` (
-  `event_id` varchar(60) NOT NULL,
-  `start_time` time NOT NULL,
-  `end_time` time NOT NULL,
-  `type` enum('WEEKLY','ONE_DAY') NOT NULL,
-  `date` date NOT NULL,
-  `weekDay` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -96,16 +86,6 @@ CREATE TABLE `participants` (
   `type` enum('Maybe','Confirmed') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `tags`
---
-
-CREATE TABLE `tags` (
-  `event_id` varchar(60) NOT NULL,
-  `category` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -142,12 +122,6 @@ ALTER TABLE `events`
   ADD PRIMARY KEY (`event_id`);
 
 --
--- Indexes for table `event_date`
---
-ALTER TABLE `event_date`
-  ADD PRIMARY KEY (`event_id`);
-
---
 -- Indexes for table `friends`
 --
 ALTER TABLE `friends`
@@ -158,12 +132,6 @@ ALTER TABLE `friends`
 --
 ALTER TABLE `participants`
   ADD PRIMARY KEY (`event_id`);
-
---
--- Indexes for table `tags`
---
-ALTER TABLE `tags`
-  ADD PRIMARY KEY (`event_id`,`category`);
 
 --
 -- Indexes for table `user`
