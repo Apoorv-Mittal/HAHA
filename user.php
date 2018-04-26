@@ -37,7 +37,7 @@ else {
 
 
     $body .= <<<BODY
-        <h1 class="text-center">User Page</h1>
+        <h1 class="text-center">Welcome {$_SESSION['email']}!</h1>
         
             <form class="row justify-content-md-center" action="friends.php" method="post">
                 $frnds
