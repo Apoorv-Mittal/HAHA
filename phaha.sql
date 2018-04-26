@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 01, 2018 at 09:10 PM
+-- Generation Time: Apr 26, 2018 at 02:39 AM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.1
 
@@ -39,18 +39,15 @@ CREATE TABLE `categories` (
 --
 
 CREATE TABLE `events` (
-  `event_id` varchar(60) NOT NULL,
-  `date` date NOT NULL,
-  `start_time` time NOT NULL,
-  `end_time` time NOT NULL,
-  `weekDay` varchar(20) NOT NULL,
+  `event_id` int(60) NOT NULL,
+  `start_time` datetime NOT NULL,
+  `end_time` datetime NOT NULL,
   `type` enum('PUBLIC','PRIVATE') NOT NULL,
   `owner_email` varchar(60) NOT NULL,
   `title` varchar(40) NOT NULL,
   `description` varchar(200) NOT NULL,
   `image` longblob NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
 
 -- --------------------------------------------------------
 
@@ -86,7 +83,6 @@ CREATE TABLE `participants` (
   `type` enum('Maybe','Confirmed') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-
 -- --------------------------------------------------------
 
 --
@@ -103,6 +99,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`email`, `hash`) VALUES
+('a@a', '$2y$10$iiLd67Kw/.UzqqntoXy3sO3mIZ.11XyHCGik/Outgt/f2sILTCiBi'),
 ('asas@asas', '$2y$10$HR3DH4YZngVr5yyjM8FmAuWDIfnF/lPNih8b2UGQS3Aht8prh.Gwa');
 
 --
