@@ -34,7 +34,7 @@ else {
                 </div>";
     }
 }
-
+    $eventsArray = algForT();
 
     $body .= <<<BODY
         <h1 class="text-center">User Page</h1>
@@ -51,10 +51,11 @@ else {
                         <input type="submit" class="form-control btn btn-info" value="Create Event" name="event" formaction="new_event.php" formmethod="post">
                     </div>
                 </div>
-                </form> 
-         
-        
+                </form>  
 BODY;
+    foreach ($eventsArray as $value) {
+    $body.= createEventCards($value["title"],$value["start_time"], $value["end_time"], $value["event_id"]);
+}
 
     generatePage($body, "User");
 
