@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 26, 2018 at 02:39 AM
+-- Generation Time: Apr 26, 2018 at 02:47 AM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.1
 
@@ -40,8 +40,8 @@ CREATE TABLE `categories` (
 
 CREATE TABLE `events` (
   `event_id` int(60) NOT NULL,
-  `start_time` datetime NOT NULL,
-  `end_time` datetime NOT NULL,
+  `start_data` datetime NOT NULL,
+  `end_date` datetime NOT NULL,
   `type` enum('PUBLIC','PRIVATE') NOT NULL,
   `owner_email` varchar(60) NOT NULL,
   `title` varchar(40) NOT NULL,
