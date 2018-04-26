@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 26, 2018 at 02:47 AM
+-- Generation Time: Apr 26, 2018 at 02:56 AM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.1
 
@@ -40,7 +40,7 @@ CREATE TABLE `categories` (
 
 CREATE TABLE `events` (
   `event_id` int(60) NOT NULL,
-  `start_data` datetime NOT NULL,
+  `start_date` datetime NOT NULL,
   `end_date` datetime NOT NULL,
   `type` enum('PUBLIC','PRIVATE') NOT NULL,
   `owner_email` varchar(60) NOT NULL,
@@ -48,6 +48,13 @@ CREATE TABLE `events` (
   `description` varchar(200) NOT NULL,
   `image` longblob NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `events`
+--
+
+INSERT INTO `events` (`event_id`, `start_date`, `end_date`, `type`, `owner_email`, `title`, `description`, `image`) VALUES
+(0, '2018-04-05 00:00:00', '2018-04-05 00:05:00', 'PUBLIC', '', 'New event', '', '');
 
 -- --------------------------------------------------------
 
