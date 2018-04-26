@@ -32,7 +32,19 @@ if (isset($_POST["addFriend"])) {
             $additional = "<strong>You added {$fr}.</strong>";
         }
 	}
-}
+} 
+
+if (isset($_POST["remove"])) {
+	$fr = explode(" ", $_POST["remove"])[1];
+	$delete = queryForDb("DELETE FROM friends WHERE (email1=\"{$_SESSION['email']}\" AND email2=\"{$fr}\") OR (email1=\"{$_SESSION['email']}\" AND email2=\"{$fr}\")");
+	$response .= ' 
+			<h3>Friend '.$fr.' has been removed</h3>
+			<form action="user.php" method="post" class="form-horizontal">
+		        <div class="form-group col-sm-3 col-sm-push-3">
+	                <input type="submit" name="back" value="Go Back To User Page" class="form-control  btn btn-primary">
+	            </div>
+            </form>';
+} else {
 	$response .= <<<EOBODY
 		<h1>Add friend</h1>
 		
@@ -51,6 +63,7 @@ if (isset($_POST["addFriend"])) {
             </div>
         </form>
 EOBODY;
+}
 
 
 generatePage($response);
