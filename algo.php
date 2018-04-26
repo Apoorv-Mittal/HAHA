@@ -9,10 +9,6 @@
 		Returns:
 			if T then 0.75*F + 2*C else 0
 	*/
-    include("support.php");
-    include("db.php");
-    session_start();
-
     function weightalgo($key, $val) {
     	$interested = false;
     	$eventstruct = queryForDb("SELECT category FROM Events WHERE event_id=\"{$key}\"");

@@ -1,6 +1,7 @@
 <?php
 require_once ("support.php");
 require_once ("db.php");
+require_once ("algo.php");
 session_start();
 $body="";
 $frnds="<div class=\"form-group col\">";
@@ -54,8 +55,8 @@ else {
                 </form>  
 BODY;
     foreach ($eventsArray as $value) {
-    $body.= createEventCards($value["title"],$value["start_time"], $value["end_time"], $value["event_id"]);
-}
+        $body.= createEventCards($value["title"],$value["start_time"], $value["end_time"], $value["event_id"]);
+    }
 
     generatePage($body, "User");
 
