@@ -6,7 +6,7 @@ $body="";
 $frnds="<div class=\"form-group col\">";
 
 
-$result = queryForDB("SELECT * FROM friends WHERE email1 = \" ".$_SESSION['email']." \" or email2 = \"".$_SESSION['email']."\" LIMIT 5;");
+$result = queryForDB("SELECT * FROM friends WHERE email1 = \"".$_SESSION['email']."\" or email2 = \"".$_SESSION['email']."\" LIMIT 5;");
 if($result == null ) {
     $frnds .= "<h1>You have no Friends</h1>
         <input type=\"submit\" class=\"form-control btn btn-info\" value=\"Add Friends\" name=\"friends\">
