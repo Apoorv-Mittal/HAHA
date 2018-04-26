@@ -32,11 +32,13 @@ EOPAGE;
 
 function createEventCards($name, $start, $end, $id) {
    $body= <<<BODY
- <div class="card w-75">
-      <div class="card-body">
+ <div class="card w-75" id=$id>
+      <div class="card-body" >
         <h5 class="card-title">$name</h5>
         <p class="card-text">Start Time:$start &nbsp; End Time: $end &nbsp; Event ID: $id</p>
-        <input type="submit" value="Yes" class="yes" class="btn btn-primary">&nbsp; <input type="submit" value="No" class="yes" class="btn btn-primary"> 
+        <input type="submit" value="Yes" onclick = "addEventEntry($name, $id)" class="btn btn-primary">&nbsp;
+         <input type="submit" value="No" onclick = "removeEntry($id)" class="btn btn-primary"> 
+        <br> <strong id= $id> </strong>
       </div>
  </div>
 BODY;
