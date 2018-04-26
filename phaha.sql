@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 01, 2018 at 09:10 PM
+-- Generation Time: Apr 26, 2018 at 02:56 AM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.1
 
@@ -39,7 +39,9 @@ CREATE TABLE `categories` (
 --
 
 CREATE TABLE `events` (
-  `event_id` varchar(60) NOT NULL,
+  `event_id` int(60) NOT NULL,
+  `start_date` datetime NOT NULL,
+  `end_date` datetime NOT NULL,
   `type` enum('PUBLIC','PRIVATE') NOT NULL,
   `owner_email` varchar(60) NOT NULL,
   `title` varchar(40) NOT NULL,
@@ -47,20 +49,12 @@ CREATE TABLE `events` (
   `image` longblob NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
-
 --
--- Table structure for table `event_date`
+-- Dumping data for table `events`
 --
 
-CREATE TABLE `event_date` (
-  `event_id` varchar(60) NOT NULL,
-  `start_time` time NOT NULL,
-  `end_time` time NOT NULL,
-  `type` enum('WEEKLY','ONE_DAY') NOT NULL,
-  `date` date NOT NULL,
-  `weekDay` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+INSERT INTO `events` (`event_id`, `start_date`, `end_date`, `type`, `owner_email`, `title`, `description`, `image`) VALUES
+(0, '2018-04-05 00:00:00', '2018-04-05 00:05:00', 'PUBLIC', '', 'New event', '', '');
 
 -- --------------------------------------------------------
 
@@ -99,17 +93,6 @@ CREATE TABLE `participants` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tags`
---
-
-CREATE TABLE `tags` (
-  `event_id` varchar(60) NOT NULL,
-  `category` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `user`
 --
 
@@ -123,6 +106,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`email`, `hash`) VALUES
+('a@a', '$2y$10$iiLd67Kw/.UzqqntoXy3sO3mIZ.11XyHCGik/Outgt/f2sILTCiBi'),
 ('asas@asas', '$2y$10$HR3DH4YZngVr5yyjM8FmAuWDIfnF/lPNih8b2UGQS3Aht8prh.Gwa');
 
 --
@@ -142,12 +126,6 @@ ALTER TABLE `events`
   ADD PRIMARY KEY (`event_id`);
 
 --
--- Indexes for table `event_date`
---
-ALTER TABLE `event_date`
-  ADD PRIMARY KEY (`event_id`);
-
---
 -- Indexes for table `friends`
 --
 ALTER TABLE `friends`
@@ -158,12 +136,6 @@ ALTER TABLE `friends`
 --
 ALTER TABLE `participants`
   ADD PRIMARY KEY (`event_id`);
-
---
--- Indexes for table `tags`
---
-ALTER TABLE `tags`
-  ADD PRIMARY KEY (`event_id`,`category`);
 
 --
 -- Indexes for table `user`
