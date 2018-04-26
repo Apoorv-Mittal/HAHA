@@ -21,12 +21,12 @@ else {
         <input type=\"submit\" class=\"form-control btn btn-info\" value=\"Add Friends\" name=\"friends\">
                 </div>";
     } else {
-        $frnds.= "<table class=\"table\"><thead><tr><th scope=\"col\">Your Friends</th></tr></thead><tbody>";
+        $frnds.= "<table class=\"table\"><thead><tr><th scope=\"col\">Your Friends</th><th></th></tr></thead><tbody>";
         while ($recordArray = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
             if ($_SESSION['email'] == $recordArray['email1'] )
-                $frnds .="<tr><td>".$recordArray['email2']."</td></tr>";
+                $frnds .="<tr><td>".$recordArray['email2']."</td><td><input type=\"submit\" class=\"form-control btn btn-info\" value=\"Remove {$recordArray['email2']}\" name=\"remove\"></td></tr>";
             else
-                $frnds .="<tr><td>".$recordArray['email1']."</td></tr>";
+                $frnds .="<tr><td>".$recordArray['email1']."</td><td><input type=\"submit\" class=\"form-control btn btn-info\" value=\"Remove {$recordArray['email1']}\" name=\"remove\"></td></tr>";
         }
         $frnds.= "</tbody>
                 </table>
