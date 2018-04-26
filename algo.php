@@ -65,7 +65,7 @@
     }
 
     function algoForY() {// Y is events the user is participating in
-    	return queryForDB("select p.event_id, ed.start_date, ed.end_date, ed.type from participants p left join events e on p.event_id = e.event_id where p.email = '".$_SESSION["email"]."'");
+    	return queryForDB("select p.event_id, e.start_date, e.end_date, e.type from participants p left join events e on p.event_id = e.event_id where p.email = '".$_SESSION["email"]."'");
     }
 
     function eventsOverlap($e1, $e2) {
