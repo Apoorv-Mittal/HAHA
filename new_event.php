@@ -40,7 +40,16 @@ if (isset($_POST["submitNewEvent"])) {
 EOBODY;
 } else {
 	$response .= <<<EOBODY
-		<h1>Create New Event</h1><form action="{$_SERVER["PHP_SELF"]}" method="post" class="form-horizontal">
+	<div style="padding: 4px;width: 100%;height:49px;background-color:lightblue; margin-left: -15px">
+        <form>
+            <input type="submit" value="Go to Home Page" class="btn btn-info" formaction="user.php" formmethod="post"/>
+            <input type="submit" value="Edit Interests" class="btn btn-info" formaction="interests.php" formmethod="post"/>
+        </form>
+    </div>
+		<h1>Create New Event</h1>
+		
+
+		<form action="{$_SERVER["PHP_SELF"]}" method="post" class="form-horizontal">
 			<div class="form-group">                   
                 <label for="title" class="control-label col-sm-3">Title</label>
                 <div class="col-sm-9">
@@ -68,7 +77,7 @@ EOBODY;
             </div>
             <div class="form-group">
                 <div class="col-sm-3 col-sm-push-3">
-                    <input type="submit" name="submitNewEvent" value="Create" class="form-control">
+                    <input type="submit" name="submitNewEvent" value="Create" class="form-control btn btn-primary">
                 </div>
             </div>
         </form>

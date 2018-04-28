@@ -3,7 +3,8 @@ require_once ("support.php");
 require_once ("db.php");
 require_once ("algo.php");
 session_start();
-$body="";
+$body="<div style=\"padding: 4px;width: 100%;height:49px;background-color:lightblue; margin-left: -15px\">
+        </div>";
 $frnds="<div class=\"form-group col\">";
 
 
@@ -25,9 +26,9 @@ else {
         $frnds.= "<table class=\"table\"><thead><tr><th scope=\"col\">Your Friends</th><th></th></tr></thead><tbody>";
         while ($recordArray = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
             if ($_SESSION['email'] == $recordArray['email1'] )
-                $frnds .="<tr><td>".$recordArray['email2']."</td><td><input type=\"submit\" class=\"form-control btn btn-info\" value=\"Remove {$recordArray['email2']}\" name=\"remove\"></td></tr>";
+                $frnds .="<tr><td>".$recordArray['email2']."</td><td><input type=\"submit\" class=\"form-control btn btn-danger\" value=\"Remove {$recordArray['email2']}\" name=\"remove\"></td></tr>";
             else
-                $frnds .="<tr><td>".$recordArray['email1']."</td><td><input type=\"submit\" class=\"form-control btn btn-info\" value=\"Remove {$recordArray['email1']}\" name=\"remove\"></td></tr>";
+                $frnds .="<tr><td>".$recordArray['email1']."</td><td><input type=\"submit\" class=\"form-control btn btn-danger\" value=\"Remove {$recordArray['email1']}\" name=\"remove\"></td></tr>";
         }
         $frnds.= "</tbody>
                 </table>

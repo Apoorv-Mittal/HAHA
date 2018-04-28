@@ -86,11 +86,11 @@
 
 <body onload="init();">
 
-<div id="nav">
+<div style="padding: 4px;width: 100%;height:49px;background-color:lightblue;">
     <form>
-        <input type="submit" value="Go to Home Page" class="btn btn-info" formaction="user.php"/>
-        <input type="submit" value="Create New Event" class="btn btn-info" formaction="new_event.php"/>
-        <input type="submit" value="Edit Interests" class="btn btn-info" formaction="interests.php"/>
+        <input type="submit" value="Go to Home Page" class="btn btn-info" formaction="user.php" formmethod="post"/>
+        <input type="submit" value="Create New Event" class="btn btn-info" formaction="new_event.php" formmethod="post"/>
+        <input type="submit" value="Edit Interests" class="btn btn-info" formaction="interests.php" formmethod="post"/>
     </form>
 </div>
 

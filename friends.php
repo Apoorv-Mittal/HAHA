@@ -46,7 +46,14 @@ if (isset($_POST["remove"])) {
             </form>';
 } else {
 	$response .= <<<EOBODY
-		<h1>Add friend</h1>
+	    <div style="padding: 4px;width: 100%;height:49px;background-color:lightblue; margin-left: -15px">
+            <form>
+                <input type="submit" value="Go to Home Page" class="btn btn-info" formaction="user.php" formmethod="post"/>
+                <input type="submit" value="Create New Event" class="btn btn-info" formaction="new_event.php" formmethod="post"/>
+                <input type="submit" value="Edit Interests" class="btn btn-info" formaction="interests.php" formmethod="post"/>
+            </form>
+        </div>
+		<h1 class="text-center">Add friend</h1>
 		
 		$additional
 		
@@ -57,9 +64,6 @@ if (isset($_POST["remove"])) {
             </div>
             <div class="form-group col-sm-3 col-sm-push-3">
                 <input type="submit" name="addFriend" value="Add" class="form-control  btn btn-primary">
-            </div>
-            <div class="form-group col-sm-3 col-sm-push-3">
-                <input type="submit" name="back" value="Go Back To User Page" class="form-control  btn btn-primary" formaction="user.php" formmethod="post">
             </div>
         </form>
 EOBODY;

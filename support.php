@@ -16,9 +16,22 @@ function generatePage($body, $title="Events", $css="") {
         <title>$title</title>
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" >
         $css
+        <style>
+       html {
+        height: 100%;
+        }
+        body {
+        background-image: url("img/background.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-color: #cccccc;
+        
+        
+        }
+        </style>
     </head>
             
-    <body>
+    <body >
         <div class="container-fluid">
             $body
         </div>

@@ -10,7 +10,13 @@ require_once 'db.php';
 
 session_start();
 $email= $_SESSION['email'];
-$body="    <h1 class='text-center'>Your Interests</h1>";
+$body="    <div style=\"padding: 4px;width: 100%;height:49px;background-color:lightblue; margin-left: -15px\">
+        <form>
+            <input type=\"submit\" value=\"Go to Home Page\" class=\"btn btn-info\" formaction=\"user.php\" formmethod=\"post\"/>
+            <input type=\"submit\" value=\"Create New Event\" class=\"btn btn-info\" formaction=\"new_event.php\" formmethod=\"post\"/>           
+        </form>
+    </div>
+    <h1 class='text-center'>Your Interests</h1>";
 
 if ( isset($_POST['createCat'])){
     $CatName = trim($_POST['createCat']);
@@ -40,7 +46,6 @@ if ( isset($_POST['dropCat'])){
 }
 
 
-$body .="<form action=\"user.php\" method=\"post\"><input type=\"submit\" name=\"back\" value=\"Go Back To User Page\" class=\"form-control col-2 btn btn-primary\"></form><br>";
 
 $result = queryForDB("select * from interests where email = \"".$email."\";");
 if ( $result == null )
@@ -79,19 +84,7 @@ function interests(){
         if ( $num_rows == 0 )
             $body1 = "<h1>There are no categories</h1>";
         else {
-
-            $body1 = "<table class='table'><thead><tr><th scope='col'>All categores</th></tr></thead><tbody>";
-            while ($row = $cat->fetch_array(MYSQLI_ASSOC)) {
-                $body1 .= "<tr><td>" . $row['category'] . "</td><td>
-                        <form action=\"{$_SERVER["PHP_SELF"]}\" method=\"post\" class=\"form-horizontal\">
-                            <input type=\"submit\" name=\"" . $row['category'] . "\" class='btn btn-primary' id='createCat'
-                            formaction=\"interests.php\" formmethod=\"post\" value='Add it to yours'>
-                            <input type='text' type=\"text\" id=\"createCat\" name=\"createCat\" value='{$row['category']}' hidden>
-                        </form>
-                        </td></tr>";
-            }
-        }
-            $body1.=<<<END
+            $body1 =<<<END
             </tbody></table>
             
             <form action="{$_SERVER["PHP_SELF"]}" method="post" class="form-horizontal">
@@ -105,6 +98,18 @@ function interests(){
             
         </form>
 END;
+            $body1 .= "<table class='table'><thead><tr><th scope='col'>All categores</th></tr></thead><tbody>";
+            while ($row = $cat->fetch_array(MYSQLI_ASSOC)) {
+                $body1 .= "<tr><td>" . $row['category'] . "</td><td>
+                        <form action=\"{$_SERVER["PHP_SELF"]}\" method=\"post\" class=\"form-horizontal\">
+                            <input type=\"submit\" name=\"" . $row['category'] . "\" class='btn btn-primary' id='createCat'
+                            formaction=\"interests.php\" formmethod=\"post\" value='Add it to yours'>
+                            <input type='text' type=\"text\" id=\"createCat\" name=\"createCat\" value='{$row['category']}' hidden>
+                        </form>
+                        </td></tr>";
+            }
+        }
+
     }
     return $body1;
 }
