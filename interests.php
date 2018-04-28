@@ -10,7 +10,7 @@ require_once 'db.php';
 
 session_start();
 $email= $_SESSION['email'];
-$body="    <div style=\"padding: 4px;width: 100%;height:49px;background-color:lightblue; margin-left: -15px\">
+$body="    <div style=\"padding: 4px;height:49px;background-color:lightblue; margin-left: -15px; margin-right: -15px\">
         <form>
             <input type=\"submit\" value=\"Go to Home Page\" class=\"btn btn-info\" formaction=\"user.php\" formmethod=\"post\"/>
             <input type=\"submit\" value=\"Create New Event\" class=\"btn btn-info\" formaction=\"new_event.php\" formmethod=\"post\"/>

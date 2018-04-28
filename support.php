@@ -25,8 +25,6 @@ function generatePage($body, $title="Events", $css="") {
         background-size: cover;
         background-repeat: no-repeat;
         background-color: #cccccc;
-        
-        
         }
         </style>
     </head>
