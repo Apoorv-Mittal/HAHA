@@ -50,6 +50,10 @@ else {
                     <div class="form-group ">
                         <input type="submit" class="form-control btn btn-info" value="Create Event" name="event" formaction="new_event.php" formmethod="post">
                     </div>
+                    
+                    <div class="form-group ">
+                        <input type="submit" class="form-control btn btn-info" value="View Calendar" name="event" formaction="calendar_UI.php" formmethod="post">
+                    </div>
                 </div>
                 </form> 
          

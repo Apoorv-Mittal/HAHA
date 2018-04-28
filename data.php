@@ -7,6 +7,9 @@ $user = "admin";
 $password = "terps";
 $database = "phaha";
 
+session_start();
+$email = $_SESSION['email'];
+
 $res = new mysqli($host, $user, $password, $database);
 /* check connection */
 if ($res->connect_errno) {
@@ -16,5 +19,16 @@ if ($res->connect_errno) {
 
 mysqli_select_db($res, "events");
 $scheduler = new schedulerConnector($res, "MySQLi");
-$scheduler->render_table("events","event_id","start_date,end_date,title");
+
+$query =
+    "select events.*
+    from events, participants
+    where events.owner_email='{$email}' or (events.event_id=participants.event_id and participants.email='{$email}')";
+
+if ($scheduler->is_select_mode())
+    //code for loading data
+    $scheduler->render_sql($query,"event_id","start_date,end_date,title,type,owner_email,description,image");
+else
+    //code for other operations - i.e. update/insert/delete
+    $scheduler->render_table("events","event_id","start_date,end_date,title,type,owner_email,description,image");
 ?>

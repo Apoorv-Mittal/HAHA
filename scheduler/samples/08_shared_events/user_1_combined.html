@@ -52,7 +52,7 @@
 			return "["+event.userId+"] "+event.text;
 		};
 		scheduler.templates.event_class=function(start,end,event){
- 		   if (event.userId==2)
+ 		   if (event.userId==1)
         	  return "user_2"; 
 		};
 		
@@ -67,7 +67,7 @@
 		//default properties of new event
 		scheduler.attachEvent("onEventCreated",function(id){
 			var ev = this.getEvent(id);
-			ev.userId = 1; //just for rendering on client, will not affect server data
+			ev.userId = 2; //just for rendering on client, will not affect server data
 			ev.event_type = 0; //private event by default
 		});
 		

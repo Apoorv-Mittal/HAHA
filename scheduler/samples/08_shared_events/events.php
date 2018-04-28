@@ -3,7 +3,6 @@
 	require_once('../common/config.php');
 	
 	$user_id = intval($_GET['user']);
-	
 	$scheduler = new schedulerConnector($res, $dbtype);
 	
 	function default_values($action){
