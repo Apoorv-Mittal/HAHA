@@ -44,6 +44,7 @@ EOBODY;
         <form>
             <input type="submit" value="Go to Home Page" class="btn btn-info" formaction="user.php" formmethod="post"/>
             <input type="submit" value="Edit Interests" class="btn btn-info" formaction="interests.php" formmethod="post"/>
+            <a href="logout.php" class="btn btn-warning" style='float: right'>Logout</a>        
         </form>
     </div>
 		<h1>Create New Event</h1>

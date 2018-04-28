@@ -4,6 +4,7 @@ require_once ("db.php");
 require_once ("algo.php");
 session_start();
 $body="<div style=\"padding: 4px;width: 100%;height:49px;background-color:lightblue; margin-left: -15px\">
+    <a href=\"logout.php\" class=\"btn btn-warning\" style='float: right'>Logout</a>        
         </div>";
 $frnds="<div class=\"form-group col\">";
 

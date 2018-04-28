@@ -13,7 +13,8 @@ $email= $_SESSION['email'];
 $body="    <div style=\"padding: 4px;width: 100%;height:49px;background-color:lightblue; margin-left: -15px\">
         <form>
             <input type=\"submit\" value=\"Go to Home Page\" class=\"btn btn-info\" formaction=\"user.php\" formmethod=\"post\"/>
-            <input type=\"submit\" value=\"Create New Event\" class=\"btn btn-info\" formaction=\"new_event.php\" formmethod=\"post\"/>           
+            <input type=\"submit\" value=\"Create New Event\" class=\"btn btn-info\" formaction=\"new_event.php\" formmethod=\"post\"/>
+            <a href=\"logout.php\" class=\"btn btn-warning\" style='float: right'>Logout</a>                   
         </form>
     </div>
     <h1 class='text-center'>Your Interests</h1>";
