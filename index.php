@@ -27,8 +27,6 @@
         height: 96px;
         margin: 0 auto 10px;
         display: block;
-        -moz-border-radius: 50%;
-        -webkit-border-radius: 50%;
         border-radius: 50%;
     }
 </style>
@@ -81,35 +79,31 @@ if( isset($_POST['Login'])){
                 </div>
                 <div class="panel-body">
                     <form role="form" action="index.php" method="POST">
-                        <fieldset>
-                            <div class="row">
-                                <div class="center-block">
-                                    <img class="jaja-img" src="img/jaja.png" alt="">
+                        <div class="row">
+                            <div class="center-block">
+                                <img class="jaja-img" src="img/jaja.png" alt="">
+                                <img class="profile-img" src="img/profile.png" alt="">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-10  col-md-offset-1 ">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                        <input class="form-control" placeholder="Email" name="Email" type="text" autofocus>
+                                    </div>
                                 </div>
-                                <div class="center-block">
-                                    <img class="profile-img" src="img/profile.png" alt="">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                        <input class="form-control" placeholder="Password" name="Pass" type="password" value="">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" class="btn btn-lg btn-primary btn-block" name="Login" value="Log in">
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-sm-12 col-md-10  col-md-offset-1 ">
-                                    <div class="form-group">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                            <input class="form-control" placeholder="Email" name="Email" type="text" autofocus>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                                            <input class="form-control" placeholder="Password" name="Pass" type="password" value="">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="submit" class="btn btn-lg btn-primary btn-block" name="Login" value="Log in">
-                                    </div>
-                                </div>
-                            </div>
-                        </fieldset>
+                        </div>
                     </form>
                 </div>
                 <div class="panel-footer ">
