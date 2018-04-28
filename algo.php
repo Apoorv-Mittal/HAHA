@@ -9,10 +9,6 @@
 		Returns:
 			if T then 0.75*F + 2*C else 0
 	*/
-    include("support.php");
-    include("db.php");
-    session_start();
-
     function weightalgo($key, $val) {
     	$interested = false;
     	$eventstruct = queryForDb("SELECT category FROM Events WHERE event_id=\"{$key}\"");
@@ -65,11 +61,11 @@
     }
 
     function algoForX() {// X is every public event
-    	return queryForDB("select start_time, end_time, date, event_id from events where type = 'PUBLIC'");
+    	return queryForDB("select start_date, end_date, event_id, title from events where type = 'PUBLIC'");
     }
 
     function algoForY() {// Y is events the user is participating in
-    	return queryForDB("select p.event_id, ed.start_time, ed.end_time, ed.date, ed.type from participants p left join events e on p.event_id = e.event_id where p.email = '".$_SESSION["email"]."'");
+    	return queryForDB("select p.event_id, e.start_date, e.end_date, e.type from participants p left join events e on p.event_id = e.event_id where p.email = '".$_SESSION["email"]."'");
     }
 
     function eventsOverlap($e1, $e2) {
@@ -107,7 +103,8 @@
     		$parsedX = array(
     			"event_id" => $x["event_id"],
 	    		"start_date" => strptime($x["start_date"], $DATETIME_FORMAT),
-	    		"end_date" => strptime($x["end_date"], $DATETIME_FORMAT)
+	    		"end_date" => strptime($x["end_date"], $DATETIME_FORMAT),
+                "title" => $x["title"]
 	    	);
     		$XArray[] = $parsedX;
     	}

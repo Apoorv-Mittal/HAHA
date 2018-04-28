@@ -13,7 +13,7 @@ function addEventEntry(email, id) {
     xmlhttp.send();
 }
 
-function removeEventEntry(id) {
+function removeEntry(id) {
     $(id).toggle(3000);
     $(id).remove();
 }

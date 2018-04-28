@@ -1,6 +1,7 @@
 <?php
 require_once ("support.php");
 require_once ("db.php");
+require_once ("algo.php");
 session_start();
 $body="";
 $frnds="<div class=\"form-group col\">";
@@ -21,12 +22,12 @@ else {
         <input type=\"submit\" class=\"form-control btn btn-info\" value=\"Add Friends\" name=\"friends\">
                 </div>";
     } else {
-        $frnds.= "<table class=\"table\"><thead><tr><th scope=\"col\">Your Friends</th></tr></thead><tbody>";
+        $frnds.= "<table class=\"table\"><thead><tr><th scope=\"col\">Your Friends</th><th></th></tr></thead><tbody>";
         while ($recordArray = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
             if ($_SESSION['email'] == $recordArray['email1'] )
-                $frnds .="<tr><td>".$recordArray['email2']."</td></tr>";
+                $frnds .="<tr><td>".$recordArray['email2']."</td><td><input type=\"submit\" class=\"form-control btn btn-info\" value=\"Remove {$recordArray['email2']}\" name=\"remove\"></td></tr>";
             else
-                $frnds .="<tr><td>".$recordArray['email1']."</td></tr>";
+                $frnds .="<tr><td>".$recordArray['email1']."</td><td><input type=\"submit\" class=\"form-control btn btn-info\" value=\"Remove {$recordArray['email1']}\" name=\"remove\"></td></tr>";
         }
         $frnds.= "</tbody>
                 </table>
@@ -34,10 +35,10 @@ else {
                 </div>";
     }
 }
-
+    $eventsArray = algForT();
 
     $body .= <<<BODY
-        <h1 class="text-center">User Page</h1>
+        <h1 class="text-center">Welcome {$_SESSION['email']}!</h1>
         
             <form class="row justify-content-md-center" action="friends.php" method="post">
                 $frnds
@@ -55,10 +56,11 @@ else {
                         <input type="submit" class="form-control btn btn-info" value="View Calendar" name="event" formaction="calendar_UI.php" formmethod="post">
                     </div>
                 </div>
-                </form> 
-         
-        
+                </form>  
 BODY;
+    foreach ($eventsArray as $value) {
+        $body.= createEventCards($value["title"],$value["start_time"], $value["end_time"], $value["event_id"]);
+    }
 
     generatePage($body, "User");
 

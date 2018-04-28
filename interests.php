@@ -80,17 +80,17 @@ function interests(){
             $body1 = "<h1>There are no categories</h1>";
         else {
 
-            $body1 ="<table class='table'><thead><tr><th scope='col'>All categores</th></tr></thead><tbody>";
-            while ($row = $cat->fetch_array(MYSQLI_ASSOC)){
-                $body1.= "<tr><td>".$row['category']."</td><td>
+            $body1 = "<table class='table'><thead><tr><th scope='col'>All categores</th></tr></thead><tbody>";
+            while ($row = $cat->fetch_array(MYSQLI_ASSOC)) {
+                $body1 .= "<tr><td>" . $row['category'] . "</td><td>
                         <form action=\"{$_SERVER["PHP_SELF"]}\" method=\"post\" class=\"form-horizontal\">
-                            <input type=\"submit\" name=\"".$row['category']."\" class='btn btn-primary' id='createCat'
+                            <input type=\"submit\" name=\"" . $row['category'] . "\" class='btn btn-primary' id='createCat'
                             formaction=\"interests.php\" formmethod=\"post\" value='Add it to yours'>
                             <input type='text' type=\"text\" id=\"createCat\" name=\"createCat\" value='{$row['category']}' hidden>
                         </form>
                         </td></tr>";
             }
-
+        }
             $body1.=<<<END
             </tbody></table>
             
@@ -105,9 +105,6 @@ function interests(){
             
         </form>
 END;
-
-
-        }
     }
     return $body1;
 }
