@@ -1,5 +1,5 @@
 <?php
-function generatePage($body, $title="Events", $css="", $includeBootstrap=true) {
+function generatePage($body, $title="Events", $css="", $includeBootstrap=true,$jsIncludes="") {
     $errorLogs = "";
     if (function_exists("getErrors")) {
         $errors = getErrors();
@@ -15,6 +15,7 @@ function generatePage($body, $title="Events", $css="", $includeBootstrap=true) {
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>$title</title>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
         $bootstrap
         $css
         <style>
@@ -36,13 +37,16 @@ function generatePage($body, $title="Events", $css="", $includeBootstrap=true) {
         </div>
         $errorLogs
     </body>
+        $jsIncludes
+
 </html>
 EOPAGE;
 
     echo $page;
 }
 
-function createEventCards($name, $start, $end, $id) {
+
+function createEventCards($name, $start, $end, $id, $email) {
     if ($start["minute"] == '0') {
         $start["minute"] = "00";
     } 
@@ -67,13 +71,16 @@ function createEventCards($name, $start, $end, $id) {
     if ($end["day"]%10 == $end["day"]) {
         $end["day"] = "0".$end["day"];
     }
+    $dummy = $start["minute"];
+
    $body= <<<BODY
  <div class="card w-75" id=$id>
       <div class="card-body" >
         <h5 class="card-title">$name</h5>
-        <p class="card-text">Start Time:{$start["month"]}/{$start["day"]}/{$start["year"]}, {$start["hour"]}:{$start["minute"]} &nbsp; End Time: {$end["month"]}/{$end["day"]}/{$end["year"]}, {$end["hour"]}:{$end["minute"]} &nbsp; Event ID: $id</p>
-        <input type="submit" value="Yes" onclick = "addEventEntry($name, $id)" class="btn btn-primary">&nbsp;
-         <input type="submit" value="No" onclick = "removeEntry($id)" class="btn btn-primary"> 
+        <p class="card-text">Start Time: {$start["month"]}/{$start["day"]}/{$start["year"]}, {$start["hour"]}:{$start["minute"]} &nbsp; End Time: {$end["month"]}/{$end["day"]}/{$end["year"]}, {$end["hour"]}:{$end["minute"]} &nbsp; Event ID: $id</p>
+        <input type="submit" value="Yes" onclick =  {addEventEntry($dummy,'$email',$id)}  class="btn btn-primary">&nbsp;
+         <input type="submit" value="No" onclick = {removeEntry($dummy,$id)} class="btn btn-primary"> 
+
         <br> <strong id= $id> </strong>
       </div>
  </div>
