@@ -44,7 +44,7 @@ if (isset($_POST["submitNewEvent"]) && $valid) {
     $title = addslashes($_POST["title"]);
     $end_date = date($DATETIME_FORMAT, strtotime($_POST["end_date"]));
     $query = "INSERT INTO events (start_date, end_date, type, owner_email, title, description, image) VALUES ('{$start_date}', '{$end_date}', '{$_POST['type']}', '{$_SESSION['email']}', '{$title}', '{$description}', '{$file_contents}')";
-    echo $query;
+
 	$result = queryForDb($query);
 	$response .= <<<EOBODY
 		<h1>Event has been added</h1><form action="{$_SERVER["PHP_SELF"]}" method="post" class="form-horizontal">
