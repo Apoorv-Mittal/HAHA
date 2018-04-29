@@ -46,7 +46,7 @@ EOPAGE;
 }
 
 
-function createEventCards($name, $start, $end, $id, $email) {
+function createEventCards($name, $start, $end, $id, $email, $image) {
     if ($start["minute"] == '0') {
         $start["minute"] = "00";
     } 
@@ -73,11 +73,17 @@ function createEventCards($name, $start, $end, $id, $email) {
     }
     $dummy = $start["minute"];
 
+    $base64   = base64_encode($image);
+    $finfo = new finfo(FILEINFO_MIME);
+    $toDisp = ('data:' . $finfo -> buffer($image) . ';base64,' . $base64);
+
    $body= <<<BODY
  <div class="card w-75" id=$id>
       <div class="card-body" >
-        <h5 class="card-title">$name</h5>
-        <p class="card-text">Start Time: {$start["month"]}/{$start["day"]}/{$start["year"]}, {$start["hour"]}:{$start["minute"]} &nbsp; End Time: {$end["month"]}/{$end["day"]}/{$end["year"]}, {$end["hour"]}:{$end["minute"]} &nbsp; Event ID: $id</p>
+        <div><h5 style= "display: inline-block" class="card-title">$name</h5><img style="float: right" src ='$toDisp' width="20%">
+        </div>
+        <p  class="card-text">Start Time: {$start["month"]}/{$start["day"]}/{$start["year"]}, {$start["hour"]}:{$start["minute"]} &nbsp; End Time: {$end["month"]}/{$end["day"]}/{$end["year"]}, {$end["hour"]}:{$end["minute"]} &nbsp; Event ID: $id
+        </p>
         <input type="submit" value="Yes" onclick =  {addEventEntry($dummy,'$email',$id)}  class="btn btn-primary">&nbsp;
          <input type="submit" value="No" onclick = {removeEntry($dummy,$id)} class="btn btn-primary"> 
 

@@ -61,7 +61,7 @@ else {
                 </form>  
 BODY;
     foreach ($eventsArray as $value) {
-        $body.= createEventCards($value["title"],$value["start_date"], $value["end_date"], $value["event_id"],$_SESSION["email"]);
+        $body.= createEventCards($value["title"],$value["start_date"], $value["end_date"], $value["event_id"],$_SESSION["email"], $value["image"]);
     }
 
     generatePage($body, "User","",true,"<script src='addEventEntry.js'></script>");

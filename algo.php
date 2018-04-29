@@ -61,7 +61,7 @@
     }
 
     function algoForX() {// X is every public event
-    	return queryForDB("select start_date, end_date, event_id, title from events where type = 'PUBLIC'");
+    	return queryForDB("select start_date, end_date, event_id, title, image from events where type = 'PUBLIC'");
     }
 
     function algoForY() {// Y is events the user is participating in
@@ -102,9 +102,10 @@
     	while ($x = $X->fetch_assoc()) {
     		$parsedX = array(
     			"event_id" => $x["event_id"],
-	    		"start_date" => date_parse_from_format ( $DATETIME_FORMAT, $x["start_date"]),
-	    		"end_date" => date_parse_from_format ($DATETIME_FORMAT,$x["end_date"]),
-                "title" => $x["title"]
+	    		"start_date" => date_parse_from_format($DATETIME_FORMAT, $x["start_date"]),
+	    		"end_date" => date_parse_from_format($DATETIME_FORMAT, $x["end_date"]),
+                "title" => $x["title"],
+                "image" => $x["image"]
 	    	);
     		$XArray[] = $parsedX;
     	}
@@ -113,8 +114,8 @@
     	while($y = $Y->fetch_assoc()) {
     		$parsedY = array(
     			"event_id" => $y["event_id"],
-	    		"start_date" => date_parse_from_format( $DATETIME_FORMAT,$y["start_date"]),
-	    		"end_date" => date_parse_from_format( $DATETIME_FORMAT,$y["end_date"])
+	    		"start_date" => date_parse_from_format($DATETIME_FORMAT, $x["start_date"]),
+	    		"end_date" => date_parse_from_format($DATETIME_FORMAT, $x["end_date"]),
     		);
     		$overlapped = false;
     		$tempX = array();
