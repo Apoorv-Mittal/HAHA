@@ -68,7 +68,7 @@ EOBODY;
 		<h1>Create New Event</h1>
 		
 
-		<form action="{$_SERVER["PHP_SELF"]}" method="post" class="form-horizontal" enctype="multipart/form-data">
+		<form action="{$_SERVER["PHP_SELF"]}" method="post" class="form-horizontal" enctype="multipart/form-data" onSubmit="validateForm(event)">
 			<div class="form-group">                   
                 <label for="title" class="control-label col-sm-3">Title</label>
                 <div class="col-sm-9">
@@ -130,27 +130,48 @@ $headExtras = <<<HEADEXTRAS
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <script type="text/javascript" src="bootstrap_extras/bootstrap-datetimepicker.js"></script>
 <script type="text/javascript">
-    $(function () {
+    $(document).ready(function () {
         $('#start-date').datetimepicker();
         $('#end-date').datetimepicker();
-        const form = document.getElementById("form");
-        form.addEventListener("submit", (e) =>{
-            const inputs = document.getElementsByTagName("input");
-            const {
-                title,
-                description,
-                file,
-                start_date,
-                end_date,
-            } = ["title",  "description", "file", "start_date", "end_date"].reduce((obj, x) => {
-                obj[x] = document.getElementsByName(x)[0];
-                return obj;
-            }, {});
-            if (title.value.length === 0 || description.value.length === 0 || !moment(start_date.value).isValid() || !moment(end_date.value).isValid() || moment(start_date.value).isAfter(moment(end_date.value))) {
-                e.preventDefault();
-            }
-        });
     });
+    function validateForm(e) {
+        const inputs = document.getElementsByTagName("input");
+        const {
+            title,
+            description,
+            file,
+            start_date,
+            end_date,
+        } = ["title",  "description", "file", "start_date", "end_date"].reduce((obj, x) => {
+            obj[x] = document.getElementsByName(x)[0];
+            return obj;
+        }, {});
+        const errors = [];
+        if (!moment(start_date.value).isValid() || !moment(end_date.value).isValid()) {
+            errors.push("Your start or end time got corrupted, please try to select them again.");
+        } else if (moment(start_date.value) > moment(end_date.value)) {
+            errors.push("You can't have your start time after your end time.");
+        }
+        if (title.value.length === 0) {
+            errors.push("You need to add a title.");
+        }
+        if (description.value.length === 0) {
+            errors.push("You need to add a description.");
+        }
+        // if public or private doesn't exist that means the user manipulated the dom and making the form not working
+        const radio = document.querySelectorAll("input[name='type'][checked]");
+        if (radio.length !== 1 || ["public", "private"].indexOf(radio[0].value) === -1) {
+            errors.push("Your form got corrupted, please refresh the page.");
+        }
+        if (file.value.length === 0) {
+            errors.push("Please upload an image.");
+        }
+        if (errors.length > 0) {
+            alert('The following error(s) occurred:\\n' + errors.join('\\n'));
+            e.preventDefault();
+            return false;
+        }
+    };
 </script>
 <style>
     form, h1 {
