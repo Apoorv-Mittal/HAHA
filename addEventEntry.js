@@ -1,5 +1,5 @@
 
-function addEventEntry(email, id) {
+function addEventEntry(x, email, id) {
     let xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -9,12 +9,11 @@ function addEventEntry(email, id) {
             document.getElementById(id).innerHTML = "Something went wrong";
         }
     }
-    xmlhttp.open("GET", "insert.php?id=" + id + "&email=" + email, true);
+    xmlhttp.open("POST", "insert.php?id=" + id + "&email=" + email, true);
     xmlhttp.send();
 }
 
-function removeEntry(id) {
-    $(id).toggle(3000);
-    $(id).slideUp();
-    $(id).remove();
+function removeEntry(start,id) {
+    $("#"+id).toggle("slow");
+    setTimeout(1000, () => ($("#" + id).remove()));
 }

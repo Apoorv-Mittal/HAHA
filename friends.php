@@ -41,7 +41,7 @@ if (isset($_POST["remove"])) {
 	$delete = queryForDb("DELETE FROM friends WHERE (email1=\"{$_SESSION['email']}\" AND email2=\"{$fr}\") OR (email2=\"{$_SESSION['email']}\" AND email1=\"{$fr}\")");
     $additional .= '<h3>Friend '.$fr.' has been removed</h3>';
 }
-else {
+
     $result = queryForDB("SELECT * FROM friends WHERE email1 = \"".$_SESSION['email']."\" or email2 = \"".$_SESSION['email']."\";");
     if($result == null ) {
         $friendsExisting .= "<h1>You have no Friends</h1>";
@@ -72,7 +72,6 @@ else {
                 </table>";
         }
     }
-}
 
 	$response .= <<<EOBODY
 	    <div style="padding: 4px;height:49px;background-color:lightblue; margin-left: -15px; margin-right: -15px">
