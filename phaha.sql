@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 29, 2018 at 10:58 PM
+-- Generation Time: Apr 29, 2018 at 11:04 PM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.1
 
@@ -85,6 +85,13 @@ CREATE TABLE `friends` (
 --
 
 INSERT INTO `friends` (`email1`, `email2`) VALUES
+('b@b', 'a@a'),
+('b@b', 'c@c'),
+('b@b', 'nelson@example.com'),
+('d@d', 'a@a'),
+('d@d', 'b@b'),
+('d@d', 'c@c'),
+('d@d', 'nelson@example.com'),
 ('nelson@example.com', 'a@a');
 
 -- --------------------------------------------------------
@@ -144,6 +151,7 @@ INSERT INTO `user` (`email`, `hash`) VALUES
 ('a@a', '$2y$10$iiLd67Kw/.UzqqntoXy3sO3mIZ.11XyHCGik/Outgt/f2sILTCiBi'),
 ('b@b', '$2y$10$rgckBC1GOtsctMLA7Z962.GolmH/PAtEetY8/d4fjkknllwWFbZXG'),
 ('c@c', '$2y$10$ip/iMn4I5W4rGy/CHqJDPOCf0SGFW3tBPf4seeaBQd7W9jxtVBSFe'),
+('d@d', '$2y$10$CEHzOjmdl/jJvBxLdk8BVOBXtIpL/jHMEMjxNJNccwNNnGbCPIwO6'),
 ('nelson@example.com', '$2y$10$qJOpG5vQ6YQEP8grK6YAwOT0zZOiqP28nomgJUIUgIUEZES7gKtbe');
 
 --
