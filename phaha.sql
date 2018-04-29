@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 26, 2018 at 02:56 AM
+-- Generation Time: Apr 29, 2018 at 08:14 PM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.1
 
@@ -39,7 +39,7 @@ CREATE TABLE `categories` (
 --
 
 CREATE TABLE `events` (
-  `event_id` int(60) NOT NULL AUTO_INCREMENT,
+  `event_id` int(60) NOT NULL,
   `start_date` datetime NOT NULL,
   `end_date` datetime NOT NULL,
   `type` enum('PUBLIC','PRIVATE') NOT NULL,
@@ -54,7 +54,7 @@ CREATE TABLE `events` (
 --
 
 INSERT INTO `events` (`event_id`, `start_date`, `end_date`, `type`, `owner_email`, `title`, `description`, `image`) VALUES
-(0, '2018-04-05 00:00:00', '2018-04-05 00:05:00', 'PUBLIC', '', 'New event', '', '');
+(1, '2018-04-05 00:00:00', '2018-04-05 00:05:00', 'PUBLIC', '', 'New event', '', '');
 
 -- --------------------------------------------------------
 
@@ -142,6 +142,16 @@ ALTER TABLE `participants`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`email`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `events`
+--
+ALTER TABLE `events`
+  MODIFY `event_id` int(60) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
