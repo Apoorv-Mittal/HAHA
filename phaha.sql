@@ -59,7 +59,7 @@ CREATE TABLE `events` (
   `title` varchar(40) NOT NULL,
   `description` varchar(200) NOT NULL,
   `image` longblob NOT NULL,
-  `category` enum('Sports','Others','Movies','Gaming','Time with Nelson <3	','Music') NOT NULL
+  `category` enum('Sports','Others','Movies','Gaming','Time with Nelson <3','Music') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
