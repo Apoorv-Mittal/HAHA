@@ -1,4 +1,5 @@
 <head>
+    <!-- Bootstrap -->
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 </head>
 
@@ -6,11 +7,6 @@
     body {
         background-image: url("img/background.jpg");
         background-size: cover;
-        background-repeat: no-repeat;
-        background-color: #cccccc;
-    }
-    .panel-heading {
-        background: lightblue;
     }
     .panel-footer {
         color: #A0A0A0;
@@ -21,7 +17,6 @@
         margin: 0 auto 10px;
         display: block;
     }
-
     .profile-img {
         width: 96px;
         height: 96px;
@@ -47,9 +42,9 @@ $body="";
 
 if( isset($_POST['Login'])){
     $email= trim($_POST['Email']);
-
     $password= trim($_POST['Pass']);
     $result = queryForDB("select * from user where email = \"".$email."\"");
+
     if($result == null )
         alert();
     else {
@@ -65,7 +60,6 @@ if( isset($_POST['Login'])){
                 exit();
             } else
                 alert();
-
         }
     }
 }
@@ -107,11 +101,11 @@ if( isset($_POST['Login'])){
                     </form>
                 </div>
                 <div class="panel-footer ">
-                    Don't have an account! <a href="sign_up.php" onClick=""> Sign Up Here </a>
+                    Don't have an account? <a href="sign_up.php" onClick=""> Sign Up Here </a>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 </body>
-<?php
