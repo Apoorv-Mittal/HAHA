@@ -32,19 +32,48 @@ if (isset($_POST["addFriend"])) {
             $additional = "<strong>You added {$fr}.</strong>";
         }
 	}
-} 
+}
+
+$friendsExisting ="";
 
 if (isset($_POST["remove"])) {
-	$fr = explode(" ", $_POST["remove"])[1];
-	$delete = queryForDb("DELETE FROM friends WHERE (email1=\"{$_SESSION['email']}\" AND email2=\"{$fr}\") OR (email1=\"{$_SESSION['email']}\" AND email2=\"{$fr}\")");
-	$response .= ' 
-			<h3>Friend '.$fr.' has been removed</h3>
-			<form action="user.php" method="post" class="form-horizontal">
-		        <div class="form-group col-sm-3 col-sm-push-3">
-	                <input type="submit" name="back" value="Go Back To User Page" class="form-control  btn btn-primary">
-	            </div>
-            </form>';
-} else {
+	$fr = $_POST["toRemove"];
+	$delete = queryForDb("DELETE FROM friends WHERE (email1=\"{$_SESSION['email']}\" AND email2=\"{$fr}\") OR (email2=\"{$_SESSION['email']}\" AND email1=\"{$fr}\")");
+    $additional .= '<h3>Friend '.$fr.' has been removed</h3>';
+}
+else {
+    $result = queryForDB("SELECT * FROM friends WHERE email1 = \"".$_SESSION['email']."\" or email2 = \"".$_SESSION['email']."\";");
+    if($result == null ) {
+        $friendsExisting .= "<h1>You have no Friends</h1>";
+    }
+    else {
+        /* Number of rows found */
+        $num_rows = $result->num_rows;
+        if ($num_rows === 0) {
+            $friendsExisting.=" You don't have any friends right Now :)";
+        } else {
+            $friendsExisting.= "<table class=\"table\"><thead><tr><th scope=\"col\">Your Friends</th><th></th></tr></thead><tbody>";
+            while ($recordArray = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+                if ($_SESSION['email'] == $recordArray['email1'] ){
+                    $friendsExisting .="<tr><td>".$recordArray['email2']."</td><td><form action=\"{$_SERVER["PHP_SELF"]}\" method=\"post\" class=\"form-horizontal\">
+                            <input type=\"submit\" name=\"remove\" class='btn btn-danger' id='remove' value='Unfriend this friend'>
+                            <input type='text' type=\"text\" id=\"toRemove\" name=\"toRemove\" value='{$recordArray['email2']}' hidden>
+                    </form></td></tr>";
+                }
+                else{
+                    $friendsExisting .="<tr><td>".$recordArray['email1']."</td><td><form action=\"{$_SERVER["PHP_SELF"]}\" method=\"post\" class=\"form-horizontal\">
+                            <input type=\"submit\" name=\"remove\" class='btn btn-danger' id='remove' value='Unfriend this friend'>
+                            <input type='text' type=\"text\" id=\"toRemove\" name=\"toRemove\" value='{$recordArray['email1']}' hidden>
+                    </form></td></tr>";
+                }
+
+            }
+            $friendsExisting.= "</tbody>
+                </table>";
+        }
+    }
+}
+
 	$response .= <<<EOBODY
 	    <div style="padding: 4px;height:49px;background-color:lightblue; margin-left: -15px; margin-right: -15px">
             <form>
@@ -67,8 +96,10 @@ if (isset($_POST["remove"])) {
                 <input type="submit" name="addFriend" value="Add" class="form-control  btn btn-primary">
             </div>
         </form>
+        
+        $friendsExisting
 EOBODY;
-}
+
 
 
 generatePage($response);
