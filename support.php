@@ -1,5 +1,5 @@
 <?php
-function generatePage($body, $title="Events", $css="") {
+function generatePage($body, $title="Events", $css="", $includeBootstrap=true) {
     $errorLogs = "";
     if (function_exists("getErrors")) {
         $errors = getErrors();
@@ -7,6 +7,7 @@ function generatePage($body, $title="Events", $css="") {
             $errorLogs = "<script>console.log(\"".implode(", '\\n',", $errors)."\")</script>";
         }
     }
+    $bootstrap = $includeBootstrap ? '<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" >' : '';
     $page = <<<EOPAGE
 <!doctype html>
 <html>
@@ -14,7 +15,7 @@ function generatePage($body, $title="Events", $css="") {
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>$title</title>
-        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" >
+        $bootstrap
         $css
         <style>
        html {
