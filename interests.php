@@ -10,14 +10,26 @@ require_once 'db.php';
 
 session_start();
 $email= $_SESSION['email'];
-$body="    <div style=\"padding: 4px;height:49px;background-color:lightblue; margin-left: -15px; margin-right: -15px\">
+$body=<<<END
+<div style="padding: 4px;height:49px;background-color:lightblue; margin-left: -15px; margin-right: -15px">
         <form>
-            <input type=\"submit\" value=\"Go to Home Page\" class=\"btn btn-info\" formaction=\"user.php\" formmethod=\"post\"/>
-            <input type=\"submit\" value=\"Create New Event\" class=\"btn btn-info\" formaction=\"new_event.php\" formmethod=\"post\"/>
-            <a href=\"logout.php\" class=\"btn btn-warning\" style='float: right'>Logout</a>                   
+            <input type="submit" value="Go to Home Page" class="btn btn-info" formaction="user.php" formmethod="post"/>
+            <input type="submit" value="Create New Event" class="btn btn-info" formaction="new_event.php" formmethod="post"/>
+            <a href="logout.php" class="btn btn-warning" style='float: right'>Logout</a>                   
         </form>
     </div>
-    <h1 class='text-center'>Your Interests</h1>";
+    <h1 class='text-center'>Your Interests</h1>
+    <form action="{$_SERVER["PHP_SELF"]}" method="post" class="form-horizontal">
+            <div class="form-group">
+                <label for="createCat" class="control-label col-sm-3 col-sm-9"><h4>Create Category</h4></label>
+                    <input type="text" id="createCat" name="createCat" class="form-control">
+            </div>
+            <div class="form-group col-sm-3 col-sm-push-3">
+                <input type="submit" name="createCatSub" value="Create" class="form-control  btn btn-primary">
+            </div>
+
+        </form>
+END;
 
 if ( isset($_POST['createCat'])){
     $CatName = trim($_POST['createCat']);
@@ -77,6 +89,7 @@ generatePage($body,"Your Categories");
 
 function interests(){
 
+
     $cat = queryForDB("select * from categories;");
     if ( $cat == null )
         $body1="error";
@@ -85,21 +98,8 @@ function interests(){
         if ( $num_rows == 0 )
             $body1 = "<h1>There are no categories</h1>";
         else {
-            $body1 =<<<END
-            </tbody></table>
-            
-            <form action="{$_SERVER["PHP_SELF"]}" method="post" class="form-horizontal">
-            <div class="form-group">                   
-                <label for="createCat" class="control-label col-sm-3 col-sm-9"><h4>Create Category</h4></label>
-                    <input type="text" id="createCat" name="createCat" class="form-control">
-            </div>
-            <div class="form-group col-sm-3 col-sm-push-3">
-                <input type="submit" name="createCatSub" value="Create" class="form-control  btn btn-primary">
-            </div>
-            
-        </form>
-END;
-            $body1 .= "<table class='table'><thead><tr><th scope='col'>All categores</th></tr></thead><tbody>";
+
+            $body1 = "<table class='table'><thead><tr><th scope='col'>All categores</th></tr></thead><tbody>";
             while ($row = $cat->fetch_array(MYSQLI_ASSOC)) {
                 $body1 .= "<tr><td>" . $row['category'] . "</td><td>
                         <form action=\"{$_SERVER["PHP_SELF"]}\" method=\"post\" class=\"form-horizontal\">
@@ -109,6 +109,7 @@ END;
                         </form>
                         </td></tr>";
             }
+            $body1 .="</tbody></table>";
         }
 
     }
