@@ -43,7 +43,7 @@ if (isset($_POST["submitNewEvent"]) && $valid) {
     $description = addslashes($_POST['description']);
     $title = addslashes($_POST["title"]);
     $end_date = date($DATETIME_FORMAT, strtotime($_POST["end_date"]));
-    $query = "INSERT INTO events (start_date, end_date, type, owner_email, title, description, image) VALUES ('{$start_date}', '{$end_date}', '{$_POST['type']}', '{$_SESSION['email']}', '{$title}', '{$description}', '{$file_contents}')";
+    $query = "INSERT INTO events (start_date, end_date, type, owner_email, title, description, category, image) VALUES ('{$start_date}', '{$end_date}', '{$_POST['type']}', '{$_SESSION['email']}', '{$title}', '{$description}', '{$_POST["category"]}', '{$file_contents}')";
 
 	$result = queryForDb($query);
 	$response .= <<<EOBODY
@@ -57,6 +57,12 @@ if (isset($_POST["submitNewEvent"]) && $valid) {
 
 EOBODY;
 } else {
+    $categories = array('Sports','Movies','Gaming','Time with Nelson <3','Music','Others');
+    $options = array();
+    foreach($categories as $category) {
+        $options[] = "<option class='dropdown-item' value='{$category}'>{$category}</option>";
+    }
+    $options = implode("", $options);
 	$response .= <<<EOBODY
 	<div style="padding: 4px;height:49px;background-color:lightblue; margin-left: -15px; margin-right: -15px">
         <form>
@@ -93,6 +99,12 @@ EOBODY;
                 <div class="col-sm-9">
                     <input type="file" name="file" class="btn btn-file btn-primary input-md" required>
                 </div>
+            </div>
+            <div class="form-group">                   
+                <label for="category" class="control-label col-sm-3">Event Category</label>
+                <select name="category" class="btn btn-primary">
+                    $options
+                </select>
             </div>
             <div class='col-sm-5'>
                 <label class="control-label">Start Time</label>
@@ -142,6 +154,7 @@ $headExtras = <<<HEADEXTRAS
             file,
             start_date,
             end_date,
+            category
         } = ["title",  "description", "file", "start_date", "end_date"].reduce((obj, x) => {
             obj[x] = document.getElementsByName(x)[0];
             return obj;
@@ -157,6 +170,9 @@ $headExtras = <<<HEADEXTRAS
         }
         if (description.value.length === 0) {
             errors.push("You need to add a description.");
+        }
+        if (category.value.length === 0) {
+            errors.push("You need to select a category");
         }
         // if public or private doesn't exist that means the user manipulated the dom and making the form not working
         const radio = document.querySelectorAll("input[name='type'][checked]");
