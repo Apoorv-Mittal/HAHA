@@ -43,11 +43,29 @@ EOPAGE;
 }
 
 function createEventCards($name, $start, $end, $id) {
+    if ($start["minute"] == '0') {
+        $start["minute"] = "00";
+    } 
+    if ($start["month"]%10 == $start["month"]) {
+        $start["month"] = "0".$start["month"];
+    }
+    if ($start["day"]%10 == $start["day"]) {
+        $start["day"] = "0".$start["day"];
+    }
+    if ($end["minute"] == '0') {
+        $end["minute"] = "00";
+    } 
+    if ($end["month"]%10 == $start["month"]) {
+        $end["month"] = "0".$start["month"];
+    }
+    if ($end["day"]%10 == $start["day"]) {
+        $end["day"] = "0".$start["day"];
+    }
    $body= <<<BODY
  <div class="card w-75" id=$id>
       <div class="card-body" >
         <h5 class="card-title">$name</h5>
-        <p class="card-text">Start Time:$start &nbsp; End Time: $end &nbsp; Event ID: $id</p>
+        <p class="card-text">Start Time:{$start["month"]}/{$start["day"]}/{$start["year"]}, {$start["hour"]}:{$start["minute"]} &nbsp; End Time: {$end["month"]}/{$end["day"]}/{$end["year"]}, {$end["hour"]}:{$end["minute"]} &nbsp; Event ID: $id</p>
         <input type="submit" value="Yes" onclick = "addEventEntry($name, $id)" class="btn btn-primary">&nbsp;
          <input type="submit" value="No" onclick = "removeEntry($id)" class="btn btn-primary"> 
         <br> <strong id= $id> </strong>
