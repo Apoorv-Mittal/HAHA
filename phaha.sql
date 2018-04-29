@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 29, 2018 at 08:14 PM
+-- Generation Time: Apr 29, 2018 at 09:26 PM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.1
 
@@ -32,6 +32,18 @@ CREATE TABLE `categories` (
   `category` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `categories`
+--
+
+INSERT INTO `categories` (`category`) VALUES
+('Gaming'),
+('Movies'),
+('Music'),
+('Others'),
+('Sports'),
+('Time with Nelson <3');
+
 -- --------------------------------------------------------
 
 --
@@ -46,15 +58,9 @@ CREATE TABLE `events` (
   `owner_email` varchar(60) NOT NULL,
   `title` varchar(40) NOT NULL,
   `description` varchar(200) NOT NULL,
-  `image` longblob NOT NULL
+  `image` longblob NOT NULL,
+  `category` enum('Sports','Others','Movies','Gaming','Time with Nelson <3	','Music') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `events`
---
-
-INSERT INTO `events` (`event_id`, `start_date`, `end_date`, `type`, `owner_email`, `title`, `description`, `image`) VALUES
-(1, '2018-04-05 00:00:00', '2018-04-05 00:05:00', 'PUBLIC', '', 'New event', '', '');
 
 -- --------------------------------------------------------
 
@@ -106,8 +112,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`email`, `hash`) VALUES
-('a@a', '$2y$10$iiLd67Kw/.UzqqntoXy3sO3mIZ.11XyHCGik/Outgt/f2sILTCiBi'),
-('asas@asas', '$2y$10$HR3DH4YZngVr5yyjM8FmAuWDIfnF/lPNih8b2UGQS3Aht8prh.Gwa');
+('a@a', '$2y$10$iiLd67Kw/.UzqqntoXy3sO3mIZ.11XyHCGik/Outgt/f2sILTCiBi');
 
 --
 -- Indexes for dumped tables
@@ -151,7 +156,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
-  MODIFY `event_id` int(60) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `event_id` int(60) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
