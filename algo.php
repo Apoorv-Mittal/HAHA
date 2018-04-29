@@ -60,11 +60,11 @@ function alfoForC(){
 }
 
 function algoForX() {// X is every public event
-    return queryForDB("select start_date, end_date, event_id, title from events where type = 'PUBLIC'");
+    return queryForDB("select start_date, end_date, event_id, title, image from events where type = 'PUBLIC'");
 }
 
 function algoForY() {// Y is events the user is participating in
-    return queryForDB("select p.event_id, e.start_date, e.end_date, e.type from participants p left join events e on p.event_id = e.event_id where p.email = '".$_SESSION["email"]."'");
+    return queryForDB("select p.event_id, e.start_date, e.end_date, e.type, e.image from participants p left join events e on p.event_id = e.event_id where p.email = '".$_SESSION["email"]."'");
 }
 
 function eventsOverlap($e1, $e2) {
@@ -109,7 +109,8 @@ function algForT() {// T is true when an event is something the user can attend.
             "start_string" => $x["start_date"],
             "end_date" => date_parse_from_format ($DATETIME_FORMAT,$x["end_date"]),
             "end_string" => $x["end_date"],
-            "title" => $x["title"]
+            "title" => $x["title"],
+            "image" => $x["image"]
         );
         $XArray[] = $parsedX;
     }
@@ -121,7 +122,8 @@ function algForT() {// T is true when an event is something the user can attend.
             "start_date" => date_parse_from_format( $DATETIME_FORMAT,$y["start_date"]),
             "end_date" => date_parse_from_format( $DATETIME_FORMAT,$y["end_date"]),
             "start_string" => $y["start_date"],
-            "end_string" => $y["end_date"]
+            "end_string" => $y["end_date"],
+            "image" => $y["image"]
         );
         $overlapped = false;
         $tempX = array();
