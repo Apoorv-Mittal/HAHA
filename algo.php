@@ -76,14 +76,14 @@
     	// converts the date to a comparable format in integers
     	// reads from largest to smallest, 0-padded (Year, Month, Day, Hour, Minute, Second)
     	$e1Dates = array(
-    		(int) strftime($start_date, $COMPARE_FORMAT),
-    		(int) strftime($end_date, $COMPARE_FORMAT)
+    		(int) strftime($startDate, $COMPARE_FORMAT),
+    		(int) strftime($endDate, $COMPARE_FORMAT)
     	);
     	$startDate =$e2["start_date"];
     	$endDate =$e2["end_date"];
     	$e2Dates = array(
-    		(int) strftime($start_date, $COMPARE_FORMAT),
-    		(int) strftime($end_date, $COMPARE_FORMAT)
+    		(int) strftime($startDate, $COMPARE_FORMAT),
+    		(int) strftime($endDate, $COMPARE_FORMAT)
     	);
     	// return true if the start date of e1 falls between e2's start and end dates,
     	// or if the end date of e1 falls between e2's start and end dates
@@ -102,8 +102,8 @@
     	while ($x = $X->fetch_assoc()) {
     		$parsedX = array(
     			"event_id" => $x["event_id"],
-	    		"start_date" => strptime($x["start_date"], $DATETIME_FORMAT),
-	    		"end_date" => strptime($x["end_date"], $DATETIME_FORMAT),
+	    		"start_date" => date_parse_from_format ( $DATETIME_FORMAT, $x["start_date"]),
+	    		"end_date" => date_parse_from_format ($DATETIME_FORMAT,$x["end_date"]),
                 "title" => $x["title"]
 	    	);
     		$XArray[] = $parsedX;
@@ -113,8 +113,8 @@
     	while($y = $Y->fetch_assoc()) {
     		$parsedY = array(
     			"event_id" => $y["event_id"],
-	    		"start_date" => strptime($y["start_date"], $DATETIME_FORMAT),
-	    		"end_date" => strptime($y["end_date"], $DATETIME_FORMAT)
+	    		"start_date" => date_parse_from_format( $DATETIME_FORMAT,$y["start_date"]),
+	    		"end_date" => date_parse_from_format( $DATETIME_FORMAT,$y["end_date"])
     		);
     		$overlapped = false;
     		$tempX = array();
