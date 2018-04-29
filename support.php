@@ -55,11 +55,11 @@ function createEventCards($name, $start, $end, $id) {
     if ($end["minute"] == '0') {
         $end["minute"] = "00";
     } 
-    if ($end["month"]%10 == $start["month"]) {
-        $end["month"] = "0".$start["month"];
+    if ($end["month"]%10 == $end["month"]) {
+        $end["month"] = "0".$end["month"];
     }
-    if ($end["day"]%10 == $start["day"]) {
-        $end["day"] = "0".$start["day"];
+    if ($end["day"]%10 == $end["day"]) {
+        $end["day"] = "0".$end["day"];
     }
    $body= <<<BODY
  <div class="card w-75" id=$id>
