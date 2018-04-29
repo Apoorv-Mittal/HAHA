@@ -39,7 +39,7 @@ CREATE TABLE `categories` (
 --
 
 CREATE TABLE `events` (
-  `event_id` int(60) NOT NULL,
+  `event_id` int(60) NOT NULL AUTO_INCREMENT,
   `start_date` datetime NOT NULL,
   `end_date` datetime NOT NULL,
   `type` enum('PUBLIC','PRIVATE') NOT NULL,
