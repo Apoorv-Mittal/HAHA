@@ -4,7 +4,7 @@ require_once ("db.php");
 require_once ("algo.php");
 session_start();
 $body="<div style=\"padding: 4px;height:49px;background-color:lightblue; margin-left: -15px; margin-right: -15px\">
-    <a href=\"logout.php\" class=\"btn btn-warning\" style='float: right'>Logout</a>        
+        <a href=\"logout.php\" class=\"btn btn-warning\" style='float: right'>Logout</a>        
         </div>";
 $frnds="<div class=\"form-group col\">";
 
@@ -27,13 +27,13 @@ else {
         $frnds.= "<table class=\"table\"><thead><tr><th scope=\"col\">Your Friends</th><th></th></tr></thead><tbody>";
         while ($recordArray = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
             if ($_SESSION['email'] == $recordArray['email1'] )
-                $frnds .="<tr><td>".$recordArray['email2']."</td><td><input type=\"submit\" class=\"form-control btn btn-danger\" value=\"Remove {$recordArray['email2']}\" name=\"remove\"></td></tr>";
+                $frnds .="<tr><td>".$recordArray['email2']."</td></tr>";
             else
-                $frnds .="<tr><td>".$recordArray['email1']."</td><td><input type=\"submit\" class=\"form-control btn btn-danger\" value=\"Remove {$recordArray['email1']}\" name=\"remove\"></td></tr>";
+                $frnds .="<tr><td>".$recordArray['email1']."</td></tr>";
         }
         $frnds.= "</tbody>
                 </table>
-                <input type=\"submit\" class=\"form-control btn btn-info\" value=\"Add more friends\" name=\"friends\">
+                <input type=\"submit\" class=\"form-control btn btn-info\" value=\"Add/Remove friends\" name=\"friends\">
                 </div>";
     }
 }

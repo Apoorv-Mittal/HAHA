@@ -53,9 +53,9 @@ if( isset($_POST['Login'])){
         if ($num_rows === 0) {
             alert();
         } else {
-            $_SESSION['email'] = $email;
             $row = $result->fetch_array(MYSQLI_ASSOC);
             if (password_verify($password, $row['hash'])) {
+                $_SESSION['email'] = $email;
                 header('Location:user.php');
                 exit();
             } else

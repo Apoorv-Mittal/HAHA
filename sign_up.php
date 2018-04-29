@@ -11,7 +11,7 @@
 			$fileName = basename(__FILE__);
 			$emailValue = "";
 			$body = "<h1 class='text-center'>Sign Up</h1>";
-			$errors = [];
+			$error = [];
 			if (isset($_POST["email"])) {
 				$emailValue = $_POST["email"];
 			}
@@ -28,16 +28,16 @@ END;
 					$sql = "insert into user (email, hash) values ('".$_POST["email"]."', '".password_hash($_POST["password"], PASSWORD_BCRYPT)."')";
 					$result = queryForDB($sql);
 					if ($result == null ) {
-						$errors[] = "<h2>That email is already in use</h2>";
+						$error[] = "<h2>That email is already in use</h2>";
 					} else {
 						$_SESSION["email"] = $_POST["email"];
 					}
 				} else {
-					$errors[] = "<h2>Your password confirmation failed.</h2>";
+					$error[] = "<h2>Your password confirmation failed.</h2>";
 				}
 			}
-			if (count($errors) > 0) {
-				echo "<div class='errors'>".implode("", $errors)."</div>";
+			if (count($error) > 0) {
+				echo "<div class='errors'>".implode("", $error)."</div>";
 			}
 
 			if (isset($_SESSION["email"])) {
