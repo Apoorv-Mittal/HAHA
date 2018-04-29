@@ -2,6 +2,7 @@
 include("support.php");
 include("db.php");
 $response = "";
+session_start();
 /*
 
 TIME FORMAT:
