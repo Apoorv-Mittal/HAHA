@@ -49,6 +49,9 @@ function createEventCards($name, $start, $end, $id) {
     if ($start["month"]%10 == $start["month"]) {
         $start["month"] = "0".$start["month"];
     }
+    if ($start["hour"]%10 == $start["hour"]) {
+        $start["hour"] = "0".$start["hour"];
+    }
     if ($start["day"]%10 == $start["day"]) {
         $start["day"] = "0".$start["day"];
     }
@@ -58,6 +61,9 @@ function createEventCards($name, $start, $end, $id) {
     if ($end["month"]%10 == $end["month"]) {
         $end["month"] = "0".$end["month"];
     }
+    if ($end["hour"]%10 == $end["hour"]) {
+        $end["hour"] = "0".$end["hour"];
+    } 
     if ($end["day"]%10 == $end["day"]) {
         $end["day"] = "0".$end["day"];
     }
