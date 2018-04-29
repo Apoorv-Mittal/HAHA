@@ -15,5 +15,6 @@ function addEventEntry(email, id) {
 
 function removeEntry(id) {
     $(id).toggle(3000);
+    $(id).slideUp();
     $(id).remove();
 }
