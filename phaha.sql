@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 29, 2018 at 09:55 PM
+-- Generation Time: Apr 29, 2018 at 10:58 PM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.1
 
@@ -98,6 +98,13 @@ CREATE TABLE `interests` (
   `category` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `interests`
+--
+
+INSERT INTO `interests` (`email`, `category`) VALUES
+('a@a', 'Time with Nelson <3');
+
 -- --------------------------------------------------------
 
 --
@@ -109,6 +116,14 @@ CREATE TABLE `participants` (
   `email` varchar(60) NOT NULL,
   `type` enum('Maybe','Confirmed') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `participants`
+--
+
+INSERT INTO `participants` (`event_id`, `email`, `type`) VALUES
+('4', 'c@c', 'Maybe'),
+('4', 'b@b', 'Maybe');
 
 -- --------------------------------------------------------
 
@@ -127,6 +142,8 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`email`, `hash`) VALUES
 ('a@a', '$2y$10$iiLd67Kw/.UzqqntoXy3sO3mIZ.11XyHCGik/Outgt/f2sILTCiBi'),
+('b@b', '$2y$10$rgckBC1GOtsctMLA7Z962.GolmH/PAtEetY8/d4fjkknllwWFbZXG'),
+('c@c', '$2y$10$ip/iMn4I5W4rGy/CHqJDPOCf0SGFW3tBPf4seeaBQd7W9jxtVBSFe'),
 ('nelson@example.com', '$2y$10$qJOpG5vQ6YQEP8grK6YAwOT0zZOiqP28nomgJUIUgIUEZES7gKtbe');
 
 --
@@ -150,12 +167,6 @@ ALTER TABLE `events`
 --
 ALTER TABLE `friends`
   ADD PRIMARY KEY (`email1`,`email2`);
-
---
--- Indexes for table `participants`
---
-ALTER TABLE `participants`
-  ADD PRIMARY KEY (`event_id`);
 
 --
 -- Indexes for table `user`
