@@ -29,30 +29,29 @@ function weightalgo($key, $val) {
         return $val*0.75;
     }
 }
-function alfoForF(){
+function alfoForF($events){
     $participants = queryForDb("SELECT * FROM Participants");
     $friends = queryForDb("SELECT * FROM Friends");
-    $tally = [];
 
     while ($part = $participants->fetch_assoc()) {
         while($friend = $friends->fetch_assoc()) {
             if ($part["email"] == $_SESSION["email"]) {
-                $tally[$part["event_id"]] = -100000;
+                if(isset($events[$part["event_id"]])) {
+                    $events[$part["event_id"]] = -100000;
+                }
                 break;
             } elseif(($part["email"] == $friend["email1"] && $_SESSION["email"] == $friend["email2"]) || ($part["email"] == $friend["email2"] && $_SESSION["email"] == $friend["email1"])) {
-                if(array_key_exists($part["event_id"], $tally)) {
-                    $tally[$part["event_id"]];
-                } else {
-                    $tally[$part["event_id"]] = 1;
-                }
+                if(array_key_exists($part["event_id"], $events)) {
+                    $events[$part["event_id"]];
+                } 
             }
         }
     }
 
-    asort($tally);
-    $tally = array_map("weightalgo", array_keys($tally), array_values($tally));
+    asort($events);
+    $events = array_map("weightalgo", array_keys($events), array_values($events));
 
-    return array_slice(array_keys($tally), 0, 2);
+    return array_slice(array_keys($events), 0, 2);
 }
 
 function alfoForC(){
