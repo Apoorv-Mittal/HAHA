@@ -61,7 +61,7 @@ else {
                 </form>  
 BODY;
     foreach ($eventsArray as $value) {
-        $body.= createEventCards($value["title"],$value["start_time"], $value["end_time"], $value["event_id"]);
+        $body.= createEventCards($value["title"],$value["start_date"], $value["end_date"], $value["event_id"]);
     }
 
     generatePage($body, "User");
