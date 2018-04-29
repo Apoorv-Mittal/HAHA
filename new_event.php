@@ -26,7 +26,7 @@ if (isset($_POST["return"])) {
 	header("Location: user.php");
 	exit();
 }
-if (isset($_FILES["file"]) && $_FILES["file"]["error"] > 0 || array_search($_FILES["file"]["type"], array("image/gif", "image/png", "image/jpeg")) === FALSE) {
+if (isset($_FILES["file"]) && ($_FILES["file"]["error"] > 0 || array_search($_FILES["file"]["type"], array("image/gif", "image/png", "image/jpeg")) === FALSE)) {
     $response .= "<h3 class='alert alert-warning' style='background: pink; color: red; border-color: red'>Your image is not valid. Try another one.</h3>";
     $valid = false;
 }
@@ -146,7 +146,7 @@ $headExtras = <<<HEADEXTRAS
                 obj[x] = document.getElementsByName(x)[0];
                 return obj;
             }, {});
-            if (title.value.length === 0 || description.value.length === 0 || !moment(start_date.value).isValid() || !moment(end_date.value).isValid() || moment(start_date.value) > moment(end_date.value)) {
+            if (title.value.length === 0 || description.value.length === 0 || !moment(start_date.value).isValid() || !moment(end_date.value).isValid() || moment(start_date.value).isAfter(moment(end_date.value))) {
                 e.preventDefault();
             }
         });
