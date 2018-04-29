@@ -19,16 +19,6 @@ $body=<<<END
         </form>
     </div>
     <h1 class='text-center'>Your Interests</h1>
-    <form action="{$_SERVER["PHP_SELF"]}" method="post" class="form-horizontal">
-            <div class="form-group">
-                <label for="createCat" class="control-label col-sm-3 col-sm-9"><h4>Create Category</h4></label>
-                    <input type="text" id="createCat" name="createCat" class="form-control">
-            </div>
-            <div class="form-group col-sm-3 col-sm-push-3">
-                <input type="submit" name="createCatSub" value="Create" class="form-control  btn btn-primary">
-            </div>
-
-        </form>
 END;
 
 if ( isset($_POST['createCat'])){
