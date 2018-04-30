@@ -9,49 +9,53 @@ The formula:
     Returns:
         if T then 0.75*F + 2*C else 0
 */
-function weightalgo($key, $val) {
+function weightalgo(&$val, $key) {
     $interested = false;
-    $eventstruct = queryForDb("SELECT category FROM Events WHERE event_id=\"{$key}\"");
+    $eventstruct = queryForDb("SELECT category FROM events WHERE event_id=\"{$key}\"");
     $event = $eventstruct->fetch_assoc();
     $eventcat = $event["category"];
 
-    $interestsstruct = queryForDb("SELECT category FROM Interests WHERE email=\"{$_SESSION['email']}\"");
+    $interestsstruct = queryForDb("SELECT category FROM interests WHERE email=\"{$_SESSION['email']}\"");
     while($interest = $interestsstruct->fetch_assoc()) {
-        if ($eventcat = $interest["category"]) {
+        if ($eventcat === $interest["category"]) {
             $interested = true;
             break;
         }
     }
 
     if($interested) {
-        return $val*0.75 + 2;
+        $val = $val*0.75 + 2;
     } else {
-        return $val*0.75;
+        $val *= 0.75;
     }
 }
 function alfoForF($events){
-    $participants = queryForDb("SELECT * FROM Participants");
-    $friends = queryForDb("SELECT * FROM Friends");
+    $participants = queryForDb("SELECT * FROM participants");
+    $friends = queryForDb("SELECT * FROM friends");
+    $friendsArray = array();
+    
+    while($friend = $friends->fetch_assoc()) {
+        $friendsArray[] = $friend;
+    }
 
     while ($part = $participants->fetch_assoc()) {
-        while($friend = $friends->fetch_assoc()) {
+        foreach($friendsArray as $friend) {
             if ($part["email"] == $_SESSION["email"]) {
                 if(isset($events[$part["event_id"]])) {
                     $events[$part["event_id"]] = -100000;
                 }
                 break;
             } elseif(($part["email"] == $friend["email1"] && $_SESSION["email"] == $friend["email2"]) || ($part["email"] == $friend["email2"] && $_SESSION["email"] == $friend["email1"])) {
-                if(array_key_exists($part["event_id"], $events)) {
-                    $events[$part["event_id"]];
+                if(isset($events[$part["event_id"]])) {
+                    $events[$part["event_id"]] += 1;
                 } 
             }
         }
     }
+    array_walk($events, "weightalgo");
+    arsort($events);
 
-    asort($events);
-    $events = array_map("weightalgo", array_keys($events), array_values($events));
-
-    return array_slice(array_keys($events), 0, 2);
+    return $events;
 }
 
 function alfoForC(){
@@ -60,7 +64,7 @@ function alfoForC(){
 }
 
 function algoForX() {// X is every public event
-    return queryForDB("select start_date, end_date, event_id, title, image from events where type = 'PUBLIC'");
+    return queryForDB("select start_date, end_date, event_id, title, image, category from events where type = 'PUBLIC'");
 }
 
 function algoForY() {// Y is events the user is participating in
@@ -110,7 +114,8 @@ function algForT() {// T is true when an event is something the user can attend.
             "end_date" => date_parse_from_format ($DATETIME_FORMAT,$x["end_date"]),
             "end_string" => $x["end_date"],
             "title" => $x["title"],
-            "image" => $x["image"]
+            "image" => $x["image"],
+            "category" => $x["category"]
         );
         $XArray[] = $parsedX;
     }

@@ -4,13 +4,15 @@
     {
         global $errors;
         $host = "localhost";
-        $user = "admin";
+        $user = "id4717175_admin";
         $password = "terps";
-        $database = "phaha";
+        $database = "id4717175_phaha";
         /* Connecting to the database */
         $db_connection = new mysqli($host, $user, $password, $database);
+
         if ($db_connection->connect_error) {
-            die($db_connection->connect_error);
+            echo $db_connection->connect_error;
+            //die($db_connection->connect_error);
         }
 
         /* Executing query */

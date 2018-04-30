@@ -3,13 +3,13 @@ require_once("scheduler/codebase/connector/scheduler_connector.php");
 require_once ('scheduler/codebase/connector/db_mysqli.php');
 
 $host = "localhost";
-$user = "admin";
+$user = "id4717175_admin";
 $password = "terps";
-$database = "phaha";
+$database = "id4717175_phaha";
 
 session_start();
 $email = $_SESSION['email'];
-
+/* Connecting to the database */
 $res = new mysqli($host, $user, $password, $database);
 /* check connection */
 if ($res->connect_errno) {
@@ -17,7 +17,7 @@ if ($res->connect_errno) {
     exit();
 }
 
-mysqli_select_db($res, "events");
+mysqli_select_db($res, $database);
 $scheduler = new schedulerConnector($res, "MySQLi");
 
 $query =
