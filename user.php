@@ -38,6 +38,13 @@ else {
     }
 }
     $eventsArray = algForT();
+    $eventOrder = array();
+    $eventsMap = array();
+    foreach($eventsArray as $i => $event) {
+        $eventOrder[$event["event_id"]] = 0;
+        $eventsMap[$event["event_id"]] = $event;
+    }
+    $eventOrder = alfoForF($eventOrder);
 
     $body .= <<<BODY
         <h1 class="text-center">Welcome {$_SESSION['email']}!</h1>
@@ -60,8 +67,9 @@ else {
                 </div>
                 </form>  
 BODY;
-    foreach ($eventsArray as $value) {
-        $body.= createEventCards($value["title"],$value["start_date"], $value["end_date"], $value["event_id"],$_SESSION["email"], $value["image"]);
+    foreach ($eventOrder as $eventId => $score) {
+        $value = $eventsMap[$eventId];
+        $body.= createEventCards($value["title"],$value["start_date"], $value["end_date"], $value["event_id"],$_SESSION["email"], $value["image"], $value["category"], $score);
     }
 
     generatePage($body, "User","",true,"<script src='addEventEntry.js'></script>");

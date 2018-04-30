@@ -46,7 +46,7 @@ EOPAGE;
 }
 
 
-function createEventCards($name, $start, $end, $id, $email, $image) {
+function createEventCards($name, $start, $end, $id, $email, $image, $category, $score) {
     if ($start["minute"] == '0') {
         $start["minute"] = "00";
     } 
@@ -84,6 +84,7 @@ function createEventCards($name, $start, $end, $id, $email, $image) {
         </div>
         <p  class="card-text">Start Time: {$start["month"]}/{$start["day"]}/{$start["year"]}, {$start["hour"]}:{$start["minute"]} &nbsp; End Time: {$end["month"]}/{$end["day"]}/{$end["year"]}, {$end["hour"]}:{$end["minute"]} &nbsp; Event ID: $id
         </p>
+        <p class="card-text">Category: {$category}, Interest Score: {$score}</p>
         <input type="submit" value="Yes" onclick =  {addEventEntry($dummy,'$email',$id)}  class="btn btn-primary">&nbsp;
          <input type="submit" value="No" onclick = {removeEntry($dummy,$id)} class="btn btn-primary"> 
 
